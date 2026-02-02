@@ -1,0 +1,11 @@
+{
+  "git": {
+    "deploymentEnabled": false
+  },
+  "installCommand": "cd ../.. && yarn install",
+  "buildCommand": "cd ../.. && yarn build:packages && yarn workspace @3asoftwares/shell-app build",
+  "outputDirectory": "dist",
+  "framework": null,
+  "regions": ["iad1"],
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}

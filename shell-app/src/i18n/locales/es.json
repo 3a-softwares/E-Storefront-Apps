@@ -1,0 +1,138 @@
+{
+  "common": {
+    "loading": "Cargando...",
+    "error": "Ocurrió un error",
+    "success": "Éxito",
+    "cancel": "Cancelar",
+    "save": "Guardar",
+    "delete": "Eliminar",
+    "edit": "Editar",
+    "close": "Cerrar",
+    "back": "Atrás",
+    "next": "Siguiente",
+    "submit": "Enviar",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "actions": "Acciones",
+    "yes": "Sí",
+    "no": "No",
+    "confirm": "Confirmar",
+    "all": "Todos"
+  },
+  "header": {
+    "title": "3A Softwares",
+    "adminDashboard": "Panel de Administración",
+    "sellerPortal": "Portal de Vendedor",
+    "login": "Iniciar Sesión",
+    "logout": "Cerrar Sesión",
+    "signUp": "Registrarse",
+    "createAccount": "Crear Cuenta",
+    "toggleTheme": "Cambiar tema"
+  },
+  "auth": {
+    "login": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "confirmPassword": "Confirmar Contraseña",
+    "name": "Nombre",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "resetPassword": "Restablecer Contraseña",
+    "rememberMe": "Recordarme",
+    "noAccount": "¿No tienes una cuenta?",
+    "hasAccount": "¿Ya tienes una cuenta?",
+    "loginSuccess": "Inicio de sesión exitoso",
+    "signupSuccess": "Cuenta creada exitosamente",
+    "sessionExpired": "Sesión expirada. Por favor inicia sesión de nuevo.",
+    "invalidCredentials": "Correo electrónico o contraseña inválidos",
+    "emailRequired": "El correo electrónico es requerido",
+    "passwordRequired": "La contraseña es requerida",
+    "passwordMismatch": "Las contraseñas no coinciden"
+  },
+  "welcome": {
+    "title": "Bienvenido a",
+    "brandName": "3A Softwares",
+    "subtitle": "Tu Solución Completa de Plataforma E-Commerce",
+    "description": "Una plataforma de comercio electrónico moderna, escalable y rica en funciones, construida con tecnologías de vanguardia para ayudar a los negocios a crecer y tener éxito en el mercado digital.",
+    "getStarted": "Comenzar",
+    "learnMore": "Saber Más"
+  },
+  "features": {
+    "title": "Características de la Plataforma",
+    "adminPortal": {
+      "title": "Portal de Administración",
+      "description": "Panel de control integral para gestionar toda tu plataforma de comercio electrónico con potentes herramientas de análisis e informes.",
+      "features": {
+        "userManagement": "Gestión de usuarios y vendedores",
+        "analytics": "Análisis en tiempo real",
+        "orderTracking": "Seguimiento y gestión de pedidos"
+      },
+      "button": "Abrir Portal de Admin"
+    },
+    "sellerPortal": {
+      "title": "Portal de Vendedor",
+      "description": "Interfaz fácil de usar para que los vendedores gestionen sus productos, inventario y pedidos de manera eficiente.",
+      "features": {
+        "productCatalog": "Gestión del catálogo de productos",
+        "inventoryTracking": "Seguimiento de inventario",
+        "salesAnalytics": "Análisis de ventas"
+      },
+      "button": "Abrir Portal de Vendedor"
+    },
+    "storefront": {
+      "title": "Tienda para Clientes",
+      "description": "Tienda hermosa y responsiva que proporciona una experiencia de compra perfecta para los clientes.",
+      "features": {
+        "productSearch": "Búsqueda avanzada de productos",
+        "secureCheckout": "Proceso de pago seguro",
+        "orderTracking": "Seguimiento de pedidos"
+      },
+      "button": "Abrir Tienda"
+    },
+    "supportPortal": {
+      "title": "Portal de Soporte",
+      "description": "Centro de soporte dedicado para consultas de clientes, gestión de tickets y asistencia en vivo.",
+      "features": {
+        "ticketManagement": "Sistema de gestión de tickets",
+        "liveChat": "Soporte de chat en vivo",
+        "knowledgeBase": "Acceso a base de conocimientos"
+      },
+      "button": "Abrir Portal de Soporte"
+    }
+  },
+  "cta": {
+    "title": "¿Listo para Comenzar?",
+    "description": "Regístrate hoy y experimenta el poder de nuestra plataforma de comercio electrónico",
+    "createAccount": "Crear Cuenta",
+    "support": "Soporte"
+  },
+  "support": {
+    "title": "Contactar Soporte",
+    "description": "Nuestro equipo está aquí para ayudarte 24/7",
+    "email": "Correo Electrónico",
+    "emailAddress": "soporte@3asoftwares.com",
+    "phone": "Teléfono",
+    "phoneNumber": "+1 (555) 123-4567",
+    "hours": "Horario de Soporte",
+    "hoursValue": "Disponible 24/7",
+    "sendMessage": "Enviar Mensaje"
+  },
+  "footer": {
+    "copyright": "© {{year}} 3A Softwares. Todos los derechos reservados.",
+    "privacy": "Privacidad",
+    "terms": "Términos",
+    "help": "Ayuda"
+  },
+  "language": {
+    "select": "Seleccionar Idioma",
+    "en": "Inglés",
+    "es": "Español",
+    "fr": "Francés",
+    "de": "Alemán",
+    "pt": "Portugués",
+    "zh": "Chino",
+    "ja": "Japonés",
+    "ar": "Árabe"
+  }
+}

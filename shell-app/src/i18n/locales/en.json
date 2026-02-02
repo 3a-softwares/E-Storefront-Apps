@@ -1,0 +1,138 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "actions": "Actions",
+    "yes": "Yes",
+    "no": "No",
+    "confirm": "Confirm",
+    "all": "All"
+  },
+  "header": {
+    "title": "3A Softwares",
+    "adminDashboard": "Admin Dashboard",
+    "sellerPortal": "Seller Portal",
+    "login": "Login",
+    "logout": "Logout",
+    "signUp": "Sign Up",
+    "createAccount": "Create Account",
+    "toggleTheme": "Toggle theme"
+  },
+  "auth": {
+    "login": "Login",
+    "signUp": "Sign Up",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "name": "Name",
+    "forgotPassword": "Forgot Password?",
+    "resetPassword": "Reset Password",
+    "rememberMe": "Remember Me",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "loginSuccess": "Login successful",
+    "signupSuccess": "Account created successfully",
+    "sessionExpired": "Session expired. Please log in again.",
+    "invalidCredentials": "Invalid email or password",
+    "emailRequired": "Email is required",
+    "passwordRequired": "Password is required",
+    "passwordMismatch": "Passwords do not match"
+  },
+  "welcome": {
+    "title": "Welcome to",
+    "brandName": "3A Softwares",
+    "subtitle": "Your Complete E-Commerce Platform Solution",
+    "description": "A modern, scalable, and feature-rich e-commerce platform built with cutting-edge technologies to help businesses grow and succeed in the digital marketplace.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  },
+  "features": {
+    "title": "Platform Features",
+    "adminPortal": {
+      "title": "Admin Portal",
+      "description": "Comprehensive dashboard to manage your entire e-commerce platform with powerful analytics and reporting tools.",
+      "features": {
+        "userManagement": "User & seller management",
+        "analytics": "Real-time analytics",
+        "orderTracking": "Order tracking & management"
+      },
+      "button": "Open Admin Portal"
+    },
+    "sellerPortal": {
+      "title": "Seller Portal",
+      "description": "Easy-to-use interface for sellers to manage their products, inventory, and orders efficiently.",
+      "features": {
+        "productCatalog": "Product catalog management",
+        "inventoryTracking": "Inventory tracking",
+        "salesAnalytics": "Sales analytics"
+      },
+      "button": "Open Seller Portal"
+    },
+    "storefront": {
+      "title": "Customer Storefront",
+      "description": "Beautiful and responsive storefront providing seamless shopping experience for customers.",
+      "features": {
+        "productSearch": "Advanced product search",
+        "secureCheckout": "Secure checkout process",
+        "orderTracking": "Order tracking"
+      },
+      "button": "Open Storefront"
+    },
+    "supportPortal": {
+      "title": "Support Portal",
+      "description": "Dedicated support center for customer inquiries, ticket management, and live assistance.",
+      "features": {
+        "ticketManagement": "Ticket management system",
+        "liveChat": "Live chat support",
+        "knowledgeBase": "Knowledge base access"
+      },
+      "button": "Open Support Portal"
+    }
+  },
+  "cta": {
+    "title": "Ready to Get Started?",
+    "description": "Sign up today and experience the power of our e-commerce platform",
+    "createAccount": "Create Account",
+    "support": "Support"
+  },
+  "support": {
+    "title": "Contact Support",
+    "description": "Our team is here to help you 24/7",
+    "email": "Email",
+    "emailAddress": "support@3asoftwares.com",
+    "phone": "Phone",
+    "phoneNumber": "+1 (555) 123-4567",
+    "hours": "Support Hours",
+    "hoursValue": "24/7 Available",
+    "sendMessage": "Send Message"
+  },
+  "footer": {
+    "copyright": "© {{year}} 3A Softwares. All rights reserved.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "help": "Help"
+  },
+  "language": {
+    "select": "Select Language",
+    "en": "English",
+    "es": "Spanish",
+    "fr": "French",
+    "de": "German",
+    "pt": "Portuguese",
+    "zh": "Chinese",
+    "ja": "Japanese",
+    "ar": "Arabic"
+  }
+}

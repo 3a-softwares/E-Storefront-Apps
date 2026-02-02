@@ -1,0 +1,37 @@
+{
+  "name": "e-apps",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend applications monorepo - Admin, Seller, Shell apps",
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:admin": "yarn workspace @3asoftwares/admin-app run dev",
+    "dev:shell": "yarn workspace @3asoftwares/shell-app run dev",
+    "dev:seller": "yarn workspace @3asoftwares/seller-app run dev",
+    "dev": "concurrently \"yarn dev:admin\" \"yarn dev:shell\" \"yarn dev:seller\" --names \"admin,shell,seller\" --prefix-colors \"cyan,green,yellow\"",
+    "build:admin": "yarn workspace @3asoftwares/admin-app run build",
+    "build:shell": "yarn workspace @3asoftwares/shell-app run build",
+    "build:seller": "yarn workspace @3asoftwares/seller-app run build",
+    "build": "yarn build:admin && yarn build:shell && yarn build:seller",
+    "test:admin": "yarn workspace @3asoftwares/admin-app run test",
+    "test:shell": "yarn workspace @3asoftwares/shell-app run test",
+    "test:seller": "yarn workspace @3asoftwares/seller-app run test",
+    "test": "yarn test:admin && yarn test:shell && yarn test:seller",
+    "test:coverage": "yarn workspace @3asoftwares/admin-app run test:coverage && yarn workspace @3asoftwares/shell-app run test:coverage && yarn workspace @3asoftwares/seller-app run test:coverage",
+    "lint:admin": "yarn workspace @3asoftwares/admin-app run lint",
+    "lint:shell": "yarn workspace @3asoftwares/shell-app run lint",
+    "lint:seller": "yarn workspace @3asoftwares/seller-app run lint",
+    "lint": "yarn lint:admin && yarn lint:shell && yarn lint:seller",
+    "lint:fix": "yarn workspace @3asoftwares/admin-app run lint:fix && yarn workspace @3asoftwares/shell-app run lint:fix && yarn workspace @3asoftwares/seller-app run lint:fix"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "yarn": ">=3.0.0"
+  }
+}

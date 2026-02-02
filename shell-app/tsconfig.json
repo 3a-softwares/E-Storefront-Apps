@@ -1,0 +1,19 @@
+{
+  "extends": "../../packages/utils/src/config/tsconfig.base.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "moduleResolution": "bundler",
+    "types": ["node", "webpack-env"],
+    "baseUrl": ".",
+    "paths": {
+      "@3asoftwares/ui": ["../../packages/ui-library/src"],
+      "@3asoftwares/ui/*": ["../../packages/ui-library/src/*"],
+      "@3asoftwares/utils": ["../../packages/utils/src"],
+      "@3asoftwares/utils/*": ["../../packages/utils/src/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
