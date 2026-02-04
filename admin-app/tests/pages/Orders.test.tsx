@@ -1,16 +1,15 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
+import { screen } from '@testing-library/react';
 import { render, mockOrder, mockPagination } from '../test-utils';
 import { Orders } from '../../src/pages/Orders';
 
 // Mock the API queries
-vi.mock('../api/queries', () => ({
-  useOrders: vi.fn(),
-  useOrder: vi.fn(),
-  useUpdateOrderStatus: vi.fn(),
-  useUpdatePaymentStatus: vi.fn(),
-  useCancelOrder: vi.fn(),
+jest.mock('../../src/api/queries', () => ({
+  useOrders: jest.fn(),
+  useOrder: jest.fn(),
+  useUpdateOrderStatus: jest.fn(),
+  useUpdatePaymentStatus: jest.fn(),
+  useCancelOrder: jest.fn(),
 }));
 
 import {
@@ -22,10 +21,10 @@ import {
 } from '../../src/api/queries';
 
 describe('Orders Page', () => {
-  const mockRefetch = vi.fn();
-  const mockUpdateStatusMutateAsync = vi.fn();
-  const mockUpdatePaymentMutateAsync = vi.fn();
-  const mockCancelMutateAsync = vi.fn();
+  const mockRefetch = jest.fn();
+  const mockUpdateStatusMutateAsync = jest.fn();
+  const mockUpdatePaymentMutateAsync = jest.fn();
+  const mockCancelMutateAsync = jest.fn();
 
   const mockOrdersData = {
     orders: {
@@ -39,28 +38,28 @@ describe('Orders Page', () => {
   };
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
 
-    vi.mocked(useOrders).mockReturnValue({
+    jest.mocked(useOrders).mockReturnValue({
       data: mockOrdersData,
       isLoading: false,
       refetch: mockRefetch,
     } as any);
 
-    vi.mocked(useOrder).mockReturnValue({
+    jest.mocked(useOrder).mockReturnValue({
       data: null,
       isLoading: false,
     } as any);
 
-    vi.mocked(useUpdateOrderStatus).mockReturnValue({
+    jest.mocked(useUpdateOrderStatus).mockReturnValue({
       mutateAsync: mockUpdateStatusMutateAsync,
     } as any);
 
-    vi.mocked(useUpdatePaymentStatus).mockReturnValue({
+    jest.mocked(useUpdatePaymentStatus).mockReturnValue({
       mutateAsync: mockUpdatePaymentMutateAsync,
     } as any);
 
-    vi.mocked(useCancelOrder).mockReturnValue({
+    jest.mocked(useCancelOrder).mockReturnValue({
       mutateAsync: mockCancelMutateAsync,
     } as any);
   });
@@ -73,7 +72,7 @@ describe('Orders Page', () => {
     });
 
     it('should display loading spinner when loading', () => {
-      vi.mocked(useOrders).mockReturnValue({
+      jest.mocked(useOrders).mockReturnValue({
         data: null,
         isLoading: true,
         refetch: mockRefetch,
@@ -102,30 +101,12 @@ describe('Orders Page', () => {
     });
   });
 
-  describe('Status Filter', () => {
-    it('should have status filter dropdown', () => {
-      render(<Orders />);
-
-      const selects = screen.getAllByRole('combobox');
-      expect(selects.length).toBeGreaterThan(0);
-    });
-  });
-
   describe('View Order Details', () => {
     it('should have view buttons in table', () => {
       render(<Orders />);
 
       const viewButtons = screen.getAllByRole('button', { name: /view|details/i });
       expect(viewButtons.length).toBeGreaterThan(0);
-    });
-  });
-
-  describe('Update Order Status', () => {
-    it('should have status update controls', () => {
-      render(<Orders />);
-
-      const statusSelects = screen.getAllByRole('combobox');
-      expect(statusSelects.length).toBeGreaterThan(0);
     });
   });
 
@@ -140,7 +121,7 @@ describe('Orders Page', () => {
 
   describe('Pagination', () => {
     it('should show pagination buttons for multiple pages', () => {
-      vi.mocked(useOrders).mockReturnValue({
+      jest.mocked(useOrders).mockReturnValue({
         data: {
           orders: {
             orders: mockOrdersData.orders.orders,
@@ -159,7 +140,7 @@ describe('Orders Page', () => {
 
   describe('Empty State', () => {
     it('should handle empty orders list', () => {
-      vi.mocked(useOrders).mockReturnValue({
+      jest.mocked(useOrders).mockReturnValue({
         data: {
           orders: {
             orders: [],

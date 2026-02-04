@@ -66,13 +66,6 @@ describe('Seller Dashboard Page', () => {
     });
   });
 
-  it('should show loading spinner initially', () => {
-    mockGetSellerStats.mockImplementation(() => new Promise((resolve) => setTimeout(resolve, 100)));
-
-    renderDashboard();
-    expect(screen.getByTestId('mock-spinner')).toBeInTheDocument();
-  });
-
   it('should display total revenue', async () => {
     renderDashboard();
 

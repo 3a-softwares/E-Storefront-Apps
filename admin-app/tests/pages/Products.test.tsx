@@ -1,16 +1,16 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, waitFor } from '@testing-library/react';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render, mockProduct, mockPagination } from '../test-utils';
 import { Products } from '../../src/pages/Products';
 
 // Mock the API queries
-vi.mock('../api/queries', () => ({
-  useProducts: vi.fn(),
-  useCreateProduct: vi.fn(),
-  useUpdateProduct: vi.fn(),
-  useDeleteProduct: vi.fn(),
-  useCategories: vi.fn(),
+jest.mock('../../src/api/queries', () => ({
+  useProducts: jest.fn(),
+  useCreateProduct: jest.fn(),
+  useUpdateProduct: jest.fn(),
+  useDeleteProduct: jest.fn(),
+  useCategories: jest.fn(),
 }));
 
 import {
@@ -22,10 +22,10 @@ import {
 } from '../../src/api/queries';
 
 describe('Products Page', () => {
-  const mockRefetch = vi.fn();
-  const mockCreateMutateAsync = vi.fn();
-  const mockUpdateMutateAsync = vi.fn();
-  const mockDeleteMutateAsync = vi.fn();
+  const mockRefetch = jest.fn();
+  const mockCreateMutateAsync = jest.fn();
+  const mockUpdateMutateAsync = jest.fn();
+  const mockDeleteMutateAsync = jest.fn();
 
   const mockProductsData = {
     products: {
@@ -48,28 +48,28 @@ describe('Products Page', () => {
   };
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
 
-    vi.mocked(useProducts).mockReturnValue({
+    (useProducts as jest.Mock).mockReturnValue({
       data: mockProductsData,
       isLoading: false,
       refetch: mockRefetch,
     } as any);
 
-    vi.mocked(useCategories).mockReturnValue({
+    (useCategories as jest.Mock).mockReturnValue({
       data: mockCategoriesData,
       isLoading: false,
     } as any);
 
-    vi.mocked(useCreateProduct).mockReturnValue({
+    (useCreateProduct as jest.Mock).mockReturnValue({
       mutateAsync: mockCreateMutateAsync,
     } as any);
 
-    vi.mocked(useUpdateProduct).mockReturnValue({
+    (useUpdateProduct as jest.Mock).mockReturnValue({
       mutateAsync: mockUpdateMutateAsync,
     } as any);
 
-    vi.mocked(useDeleteProduct).mockReturnValue({
+    (useDeleteProduct as jest.Mock).mockReturnValue({
       mutateAsync: mockDeleteMutateAsync,
     } as any);
   });
@@ -82,7 +82,7 @@ describe('Products Page', () => {
     });
 
     it('should display loading spinner when loading', () => {
-      vi.mocked(useProducts).mockReturnValue({
+      (useProducts as jest.Mock).mockReturnValue({
         data: null,
         isLoading: true,
         refetch: mockRefetch,
@@ -165,7 +165,7 @@ describe('Products Page', () => {
 
   describe('Pagination', () => {
     it('should display pagination for multiple pages', () => {
-      vi.mocked(useProducts).mockReturnValue({
+      (useProducts as jest.Mock).mockReturnValue({
         data: {
           products: {
             products: mockProductsData.products.products,

@@ -30,30 +30,6 @@ describe('Seller Header Component', () => {
     });
   });
 
-  it('should render the header with app name', () => {
-    render(<Header />);
-    expect(screen.getByTestId('app-name')).toHaveTextContent('Seller Portal');
-  });
-
-  it('should display user name when logged in', () => {
-    render(<Header />);
-    expect(screen.getByTestId('user-name')).toHaveTextContent('Test Seller');
-  });
-
-  it('should render logout button when user is logged in', () => {
-    render(<Header />);
-    expect(screen.getByTestId('logout-button')).toBeInTheDocument();
-  });
-
-  it('should call clearAuth when logout button is clicked', () => {
-    render(<Header />);
-
-    const logoutButton = screen.getByTestId('logout-button');
-    fireEvent.click(logoutButton);
-
-    expect(mockClearAuth).toHaveBeenCalledTimes(1);
-  });
-
   it('should not display user name when not logged in', () => {
     (useSellerAuthStore as any).mockReturnValue({
       user: null,

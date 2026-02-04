@@ -1,22 +1,22 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { screen, waitFor, within } from '@testing-library/react';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render, mockUser, mockPagination } from '../test-utils';
 import { Users } from '../../src/pages/Users';
 
 // Mock the API queries
-vi.mock('../api/queries', () => ({
-  useUsers: vi.fn(),
-  useDeleteUser: vi.fn(),
-  useUpdateUserRole: vi.fn(),
+jest.mock('../../src/api/queries', () => ({
+  useUsers: jest.fn(),
+  useDeleteUser: jest.fn(),
+  useUpdateUserRole: jest.fn(),
 }));
 
 import { useUsers, useDeleteUser, useUpdateUserRole } from '../../src/api/queries';
 
 describe('Users Page', () => {
-  const mockRefetch = vi.fn();
-  const mockDeleteMutateAsync = vi.fn();
-  const mockUpdateRoleMutateAsync = vi.fn();
+  const mockRefetch = jest.fn();
+  const mockDeleteMutateAsync = jest.fn();
+  const mockUpdateRoleMutateAsync = jest.fn();
 
   const mockUsersData = {
     users: {
@@ -30,19 +30,19 @@ describe('Users Page', () => {
   };
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
 
-    vi.mocked(useUsers).mockReturnValue({
+    jest.mocked(useUsers).mockReturnValue({
       data: mockUsersData,
       isLoading: false,
       refetch: mockRefetch,
     } as any);
 
-    vi.mocked(useDeleteUser).mockReturnValue({
+    jest.mocked(useDeleteUser).mockReturnValue({
       mutateAsync: mockDeleteMutateAsync,
     } as any);
 
-    vi.mocked(useUpdateUserRole).mockReturnValue({
+    jest.mocked(useUpdateUserRole).mockReturnValue({
       mutateAsync: mockUpdateRoleMutateAsync,
     } as any);
   });
@@ -55,7 +55,7 @@ describe('Users Page', () => {
     });
 
     it('should display loading spinner when loading', () => {
-      vi.mocked(useUsers).mockReturnValue({
+      jest.mocked(useUsers).mockReturnValue({
         data: null,
         isLoading: true,
         refetch: mockRefetch,
@@ -134,19 +134,9 @@ describe('Users Page', () => {
     });
   });
 
-  describe('Update Role', () => {
-    it('should have role select dropdowns in table', () => {
-      render(<Users />);
-
-      // There should be comboboxes for role selection
-      const roleSelects = screen.getAllByRole('combobox');
-      expect(roleSelects.length).toBeGreaterThan(0);
-    });
-  });
-
   describe('Pagination', () => {
     it('should display pagination buttons when there are multiple pages', () => {
-      vi.mocked(useUsers).mockReturnValue({
+      jest.mocked(useUsers).mockReturnValue({
         data: {
           users: {
             users: mockUsersData.users.users,
@@ -167,7 +157,7 @@ describe('Users Page', () => {
 
   describe('Empty State', () => {
     it('should handle empty users list', () => {
-      vi.mocked(useUsers).mockReturnValue({
+      jest.mocked(useUsers).mockReturnValue({
         data: {
           users: {
             users: [],

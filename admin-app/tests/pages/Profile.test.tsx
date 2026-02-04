@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, waitFor, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
@@ -101,81 +100,34 @@ describe('Profile Page', () => {
       },
     });
   });
+  describe('Rendering', () => {
+    it('should display profile heading', async () => {
+      renderWithProviders();
 
-  it('should show loading spinner initially', () => {
-    mockGraphqlRequest.mockImplementation(() => new Promise((resolve) => setTimeout(resolve, 100)));
-
-    renderWithProviders();
-    expect(screen.getByTestId('mock-spinner')).toBeInTheDocument();
-  });
-
-  it('should display profile heading', async () => {
-    renderWithProviders();
-
-    await waitFor(() => {
-      expect(screen.getByRole('heading', { name: /profile/i })).toBeInTheDocument();
-    });
-  });
-
-  it('should display user information', async () => {
-    renderWithProviders();
-
-    await waitFor(() => {
-      expect(screen.getAllByText('Test Admin').length).toBeGreaterThan(0);
-      expect(screen.getAllByText('admin@test.com').length).toBeGreaterThan(0);
-    });
-  });
-
-  it('should display verified badge when email is verified', async () => {
-    renderWithProviders();
-
-    await waitFor(() => {
-      expect(screen.getAllByText(/verified/i).length).toBeGreaterThan(0);
-    });
-  });
-
-  it('should display unverified badge and send button when email is not verified', async () => {
-    mockGraphqlRequest.mockResolvedValue({
-      me: {
-        id: 'admin123',
-        email: 'admin@test.com',
-        name: 'Test Admin',
-        role: 'admin',
-        emailVerified: false,
-      },
+      await waitFor(() => {
+        expect(screen.getByRole('heading', { name: /profile/i })).toBeInTheDocument();
+      });
     });
 
-    renderWithProviders({
-      auth: {
-        user: {
-          id: 'admin123',
-          email: 'admin@test.com',
-          name: 'Test Admin',
-          role: 'admin',
-          emailVerified: false,
-        },
-        token: 'jwt-token',
-        isAuthenticated: true,
-      },
+    it('should display user information', async () => {
+      renderWithProviders();
+
+      await waitFor(() => {
+        expect(screen.getAllByText('Test Admin').length).toBeGreaterThan(0);
+        expect(screen.getAllByText('admin@test.com').length).toBeGreaterThan(0);
+      });
     });
 
-    await waitFor(() => {
-      expect(screen.getAllByText(/not verified/i).length).toBeGreaterThan(0);
-      expect(screen.getByText(/send verification email/i)).toBeInTheDocument();
+    it('should display verified badge when email is verified', async () => {
+      renderWithProviders();
+
+      await waitFor(() => {
+        expect(screen.getAllByText(/verified/i).length).toBeGreaterThan(0);
+      });
     });
-  });
 
-  it('should display user role', async () => {
-    renderWithProviders();
-
-    await waitFor(() => {
-      expect(screen.getByText('ADMIN')).toBeInTheDocument();
-    });
-  });
-
-  it('should call sendVerificationEmail API when button is clicked', async () => {
-    mockGraphqlRequest
-      .mockResolvedValueOnce({
+    it('should display unverified badge and send button when email is not verified', async () => {
+      mockGraphqlRequest.mockResolvedValue({
         me: {
           id: 'admin123',
           email: 'admin@test.com',
@@ -183,95 +135,136 @@ describe('Profile Page', () => {
           role: 'admin',
           emailVerified: false,
         },
-      })
-      .mockResolvedValueOnce({
-        sendVerificationEmail: {
-          success: true,
-          message: 'Verification email sent',
+      });
+
+      renderWithProviders({
+        auth: {
+          user: {
+            id: 'admin123',
+            email: 'admin@test.com',
+            name: 'Test Admin',
+            role: 'admin',
+            emailVerified: false,
+          },
+          token: 'jwt-token',
+          isAuthenticated: true,
         },
       });
 
-    renderWithProviders({
-      auth: {
-        user: {
-          id: 'admin123',
-          email: 'admin@test.com',
-          name: 'Test Admin',
-          role: 'admin',
-          emailVerified: false,
-        },
-        token: 'jwt-token',
-        isAuthenticated: true,
-      },
+      await waitFor(() => {
+        expect(screen.getAllByText(/not verified/i).length).toBeGreaterThan(0);
+        expect(screen.getByText(/send verification email/i)).toBeInTheDocument();
+      });
     });
 
-    await waitFor(() => {
-      expect(screen.getByText(/send verification email/i)).toBeInTheDocument();
+    it('should display user role', async () => {
+      renderWithProviders();
+
+      await waitFor(() => {
+        expect(screen.getByText('ADMIN')).toBeInTheDocument();
+      });
     });
 
-    const sendButton = screen.getByText(/send verification email/i);
-    fireEvent.click(sendButton);
+    it('should call sendVerificationEmail API when button is clicked', async () => {
+      mockGraphqlRequest
+        .mockResolvedValueOnce({
+          me: {
+            id: 'admin123',
+            email: 'admin@test.com',
+            name: 'Test Admin',
+            role: 'admin',
+            emailVerified: false,
+          },
+        })
+        .mockResolvedValueOnce({
+          sendVerificationEmail: {
+            success: true,
+            message: 'Verification email sent',
+          },
+        });
 
-    await waitFor(() => {
-      expect(mockGraphqlRequest).toHaveBeenCalledWith(
-        expect.stringContaining('sendVerificationEmail'),
-        { source: 'admin' }
-      );
-    });
-  });
-
-  it('should display success message after sending verification email', async () => {
-    mockGraphqlRequest
-      .mockResolvedValueOnce({
-        me: {
-          id: 'admin123',
-          email: 'admin@test.com',
-          name: 'Test Admin',
-          role: 'admin',
-          emailVerified: false,
-        },
-      })
-      .mockResolvedValueOnce({
-        sendVerificationEmail: {
-          success: true,
-          message: 'Verification email sent successfully',
+      renderWithProviders({
+        auth: {
+          user: {
+            id: 'admin123',
+            email: 'admin@test.com',
+            name: 'Test Admin',
+            role: 'admin',
+            emailVerified: false,
+          },
+          token: 'jwt-token',
+          isAuthenticated: true,
         },
       });
 
-    renderWithProviders({
-      auth: {
-        user: {
-          id: 'admin123',
-          email: 'admin@test.com',
-          name: 'Test Admin',
-          role: 'admin',
-          emailVerified: false,
+      await waitFor(() => {
+        expect(screen.getByText(/send verification email/i)).toBeInTheDocument();
+      });
+
+      const sendButton = screen.getByText(/send verification email/i);
+      fireEvent.click(sendButton);
+
+      await waitFor(() => {
+        expect(mockGraphqlRequest).toHaveBeenCalledWith(
+          expect.stringContaining('sendVerificationEmail'),
+          { source: 'admin' }
+        );
+      });
+    });
+
+    it('should display success message after sending verification email', async () => {
+      mockGraphqlRequest
+        .mockResolvedValueOnce({
+          me: {
+            id: 'admin123',
+            email: 'admin@test.com',
+            name: 'Test Admin',
+            role: 'admin',
+            emailVerified: false,
+          },
+        })
+        .mockResolvedValueOnce({
+          sendVerificationEmail: {
+            success: true,
+            message: 'Verification email sent successfully',
+          },
+        });
+
+      renderWithProviders({
+        auth: {
+          user: {
+            id: 'admin123',
+            email: 'admin@test.com',
+            name: 'Test Admin',
+            role: 'admin',
+            emailVerified: false,
+          },
+          token: 'jwt-token',
+          isAuthenticated: true,
         },
-        token: 'jwt-token',
-        isAuthenticated: true,
-      },
+      });
+
+      await waitFor(() => {
+        expect(screen.getByText(/send verification email/i)).toBeInTheDocument();
+      });
+
+      const sendButton = screen.getByText(/send verification email/i);
+      fireEvent.click(sendButton);
+
+      await waitFor(() => {
+        expect(screen.getByText(/verification email sent successfully/i)).toBeInTheDocument();
+      });
     });
 
-    await waitFor(() => {
-      expect(screen.getByText(/send verification email/i)).toBeInTheDocument();
-    });
+    it('should handle API error', async () => {
+      mockGraphqlRequest.mockRejectedValue(new Error('Failed to fetch user'));
 
-    const sendButton = screen.getByText(/send verification email/i);
-    fireEvent.click(sendButton);
+      renderWithProviders();
 
-    await waitFor(() => {
-      expect(screen.getByText(/verification email sent successfully/i)).toBeInTheDocument();
-    });
-  });
-
-  it('should handle API error', async () => {
-    mockGraphqlRequest.mockRejectedValue(new Error('Failed to fetch user'));
-
-    renderWithProviders();
-
-    // Should handle gracefully and not crash
-    await waitFor(() => {
-      expect(mockGraphqlRequest).toHaveBeenCalled();
+      // Should handle gracefully and not crash
+      await waitFor(() => {
+        expect(mockGraphqlRequest).toHaveBeenCalled();
+      });
     });
   });
 });

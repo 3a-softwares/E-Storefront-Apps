@@ -5,6 +5,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "moduleResolution": "bundler",
+    "types": ["node", "webpack-env", "jest"],
     "jsx": "react-jsx"
   },
   "include": ["src"]

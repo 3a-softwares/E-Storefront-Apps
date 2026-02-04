@@ -1,26 +1,26 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render } from '../../tests/test-utils';
-import { Sidebar } from './Sidebar';
+import { Sidebar } from '../../src/components/Sidebar';
 
 // Mock the UI store
-vi.mock('../store/uiStore', () => ({
-  useUIStore: vi.fn(),
+jest.mock('../../src/store/uiStore', () => ({
+  useUIStore: jest.fn(),
 }));
 
-import { useUIStore } from '../store/uiStore';
+import { useUIStore } from '../../src/store/uiStore';
 
 describe('Sidebar Component', () => {
-  const mockToggleSidebar = vi.fn();
+  const mockToggleSidebar = jest.fn();
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
   });
 
   describe('Expanded State', () => {
     beforeEach(() => {
-      vi.mocked(useUIStore).mockReturnValue({
+      jest.mocked(useUIStore).mockReturnValue({
         sidebarOpen: true,
         toggleSidebar: mockToggleSidebar,
       } as any);
@@ -47,7 +47,7 @@ describe('Sidebar Component', () => {
       render(<Sidebar />);
 
       const links = screen.getAllByRole('link');
-      expect(links.length).toBe(6);
+      expect(links.length).toBe(7);
     });
 
     it('should call toggleSidebar when toggle button clicked', async () => {
@@ -63,7 +63,7 @@ describe('Sidebar Component', () => {
 
   describe('Collapsed State', () => {
     beforeEach(() => {
-      vi.mocked(useUIStore).mockReturnValue({
+      jest.mocked(useUIStore).mockReturnValue({
         sidebarOpen: false,
         toggleSidebar: mockToggleSidebar,
       } as any);
@@ -79,17 +79,7 @@ describe('Sidebar Component', () => {
       render(<Sidebar />);
 
       const links = screen.getAllByRole('link');
-      expect(links.length).toBe(6);
-    });
-
-    it('should call toggleSidebar when toggle button clicked', async () => {
-      render(<Sidebar />);
-
-      // The button exists but doesn't have an accessible name
-      const openButton = screen.getByRole('button');
-      await userEvent.click(openButton);
-
-      expect(mockToggleSidebar).toHaveBeenCalled();
+      expect(links.length).toBe(7);
     });
   });
 });

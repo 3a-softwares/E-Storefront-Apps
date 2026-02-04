@@ -1,5 +1,10 @@
-import { act } from '@testing-library/react';
 import { clearAuth, storeAuth, getStoredAuth } from '@3asoftwares/utils';
+
+jest.mock('@3asoftwares/utils', () => ({
+  clearAuth: jest.fn(),
+  storeAuth: jest.fn(),
+  getStoredAuth: jest.fn(),
+}));
 
 // Create a fresh store for each test
 const createMockStore = () => {

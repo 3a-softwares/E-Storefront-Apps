@@ -1,7 +1,6 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 import { renderHook, waitFor } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React from 'react';
 import {
   useDashboardStats,
   useUsers,
@@ -16,14 +15,14 @@ import {
   useDeleteCoupon,
   useDeleteUser,
   useUpdateUserRole,
-} from './queries';
+} from '../../src/api/queries';
 
 // Mock the GraphQL client
-vi.mock('./client', () => ({
-  graphqlRequest: vi.fn(),
+jest.mock('../../src/api/client', () => ({
+  graphqlRequest: jest.fn(),
 }));
 
-import { graphqlRequest } from './client';
+import { graphqlRequest } from '../../src/api/client';
 
 const createWrapper = () => {
   const queryClient = new QueryClient({
@@ -47,7 +46,7 @@ const createWrapper = () => {
 
 describe('API Queries', () => {
   beforeEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
   });
 
   describe('useDashboardStats', () => {
@@ -61,7 +60,7 @@ describe('API Queries', () => {
         },
       };
 
-      vi.mocked(graphqlRequest).mockResolvedValue(mockData);
+      jest.mocked(graphqlRequest).mockResolvedValue(mockData);
 
       const { result } = renderHook(() => useDashboardStats(), {
         wrapper: createWrapper(),
@@ -76,7 +75,7 @@ describe('API Queries', () => {
     });
 
     it('should handle error when fetching stats fails', async () => {
-      vi.mocked(graphqlRequest).mockRejectedValue(new Error('Network error'));
+      jest.mocked(graphqlRequest).mockRejectedValue(new Error('Network error'));
 
       const { result } = renderHook(() => useDashboardStats(), {
         wrapper: createWrapper(),
@@ -102,7 +101,7 @@ describe('API Queries', () => {
         },
       };
 
-      vi.mocked(graphqlRequest).mockResolvedValue(mockData);
+      jest.mocked(graphqlRequest).mockResolvedValue(mockData);
 
       const { result } = renderHook(() => useUsers(1, 10), {
         wrapper: createWrapper(),
@@ -120,7 +119,7 @@ describe('API Queries', () => {
     });
 
     it('should include search parameter when provided', async () => {
-      vi.mocked(graphqlRequest).mockResolvedValue({ users: { users: [], pagination: {} } });
+      jest.mocked(graphqlRequest).mockResolvedValue({ users: { users: [], pagination: {} } });
 
       renderHook(() => useUsers(1, 10, 'john'), {
         wrapper: createWrapper(),
@@ -135,7 +134,7 @@ describe('API Queries', () => {
     });
 
     it('should include role parameter when provided', async () => {
-      vi.mocked(graphqlRequest).mockResolvedValue({ users: { users: [], pagination: {} } });
+      jest.mocked(graphqlRequest).mockResolvedValue({ users: { users: [], pagination: {} } });
 
       renderHook(() => useUsers(1, 10, undefined, 'admin'), {
         wrapper: createWrapper(),
@@ -159,7 +158,7 @@ describe('API Queries', () => {
         },
       };
 
-      vi.mocked(graphqlRequest).mockResolvedValue(mockData);
+      jest.mocked(graphqlRequest).mockResolvedValue(mockData);
 
       const { result } = renderHook(() => useProducts(1, 10), {
         wrapper: createWrapper(),
@@ -173,7 +172,7 @@ describe('API Queries', () => {
     });
 
     it('should include includeInactive flag', async () => {
-      vi.mocked(graphqlRequest).mockResolvedValue({ products: { products: [], pagination: {} } });
+      jest.mocked(graphqlRequest).mockResolvedValue({ products: { products: [], pagination: {} } });
 
       renderHook(() => useProducts(1, 10), {
         wrapper: createWrapper(),
@@ -197,7 +196,7 @@ describe('API Queries', () => {
         },
       };
 
-      vi.mocked(graphqlRequest).mockResolvedValue(mockData);
+      jest.mocked(graphqlRequest).mockResolvedValue(mockData);
 
       const { result } = renderHook(() => useOrders(1, 10), {
         wrapper: createWrapper(),
@@ -220,7 +219,7 @@ describe('API Queries', () => {
         },
       };
 
-      vi.mocked(graphqlRequest).mockResolvedValue(mockData);
+      jest.mocked(graphqlRequest).mockResolvedValue(mockData);
 
       const { result } = renderHook(() => useCoupons(1, 10), {
         wrapper: createWrapper(),
@@ -237,13 +236,13 @@ describe('API Queries', () => {
 
 describe('API Mutations', () => {
   beforeEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
   });
 
   describe('useCreateProduct', () => {
     it('should create a product', async () => {
       const mockResponse = { createProduct: { id: 'new-product', name: 'New Product' } };
-      vi.mocked(graphqlRequest).mockResolvedValue(mockResponse);
+      jest.mocked(graphqlRequest).mockResolvedValue(mockResponse);
 
       const { result } = renderHook(() => useCreateProduct(), {
         wrapper: createWrapper(),
@@ -272,7 +271,7 @@ describe('API Mutations', () => {
   describe('useUpdateProduct', () => {
     it('should update a product', async () => {
       const mockResponse = { updateProduct: { id: '1', name: 'Updated Product' } };
-      vi.mocked(graphqlRequest).mockResolvedValue(mockResponse);
+      jest.mocked(graphqlRequest).mockResolvedValue(mockResponse);
 
       const { result } = renderHook(() => useUpdateProduct(), {
         wrapper: createWrapper(),
@@ -292,7 +291,7 @@ describe('API Mutations', () => {
 
   describe('useDeleteProduct', () => {
     it('should delete a product', async () => {
-      vi.mocked(graphqlRequest).mockResolvedValue({ deleteProduct: true });
+      jest.mocked(graphqlRequest).mockResolvedValue({ deleteProduct: true });
 
       const { result } = renderHook(() => useDeleteProduct(), {
         wrapper: createWrapper(),
@@ -310,7 +309,7 @@ describe('API Mutations', () => {
   describe('useCreateCoupon', () => {
     it('should create a coupon', async () => {
       const mockResponse = { createCoupon: { id: 'new-coupon', code: 'NEW10' } };
-      vi.mocked(graphqlRequest).mockResolvedValue(mockResponse);
+      jest.mocked(graphqlRequest).mockResolvedValue(mockResponse);
 
       const { result } = renderHook(() => useCreateCoupon(), {
         wrapper: createWrapper(),
@@ -333,7 +332,7 @@ describe('API Mutations', () => {
 
   describe('useUpdateCoupon', () => {
     it('should update a coupon', async () => {
-      vi.mocked(graphqlRequest).mockResolvedValue({ updateCoupon: { id: '1' } });
+      jest.mocked(graphqlRequest).mockResolvedValue({ updateCoupon: { id: '1' } });
 
       const { result } = renderHook(() => useUpdateCoupon(), {
         wrapper: createWrapper(),
@@ -350,7 +349,7 @@ describe('API Mutations', () => {
 
   describe('useDeleteCoupon', () => {
     it('should delete a coupon', async () => {
-      vi.mocked(graphqlRequest).mockResolvedValue({ deleteCoupon: true });
+      jest.mocked(graphqlRequest).mockResolvedValue({ deleteCoupon: true });
 
       const { result } = renderHook(() => useDeleteCoupon(), {
         wrapper: createWrapper(),
@@ -367,7 +366,7 @@ describe('API Mutations', () => {
 
   describe('useDeleteUser', () => {
     it('should delete a user', async () => {
-      vi.mocked(graphqlRequest).mockResolvedValue({ deleteUser: true });
+      jest.mocked(graphqlRequest).mockResolvedValue({ deleteUser: true });
 
       const { result } = renderHook(() => useDeleteUser(), {
         wrapper: createWrapper(),
@@ -381,7 +380,7 @@ describe('API Mutations', () => {
 
   describe('useUpdateUserRole', () => {
     it('should update user role', async () => {
-      vi.mocked(graphqlRequest).mockResolvedValue({ updateUserRole: { id: '1', role: 'admin' } });
+      jest.mocked(graphqlRequest).mockResolvedValue({ updateUserRole: { id: '1', role: 'admin' } });
 
       const { result } = renderHook(() => useUpdateUserRole(), {
         wrapper: createWrapper(),

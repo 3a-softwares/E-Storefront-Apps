@@ -1,15 +1,15 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render, mockCoupon, mockPagination } from '../test-utils';
 import { Coupons } from '../../src/pages/Coupons';
 
 // Mock the API queries
-vi.mock('../api/queries', () => ({
-  useCoupons: vi.fn(),
-  useCreateCoupon: vi.fn(),
-  useUpdateCoupon: vi.fn(),
-  useDeleteCoupon: vi.fn(),
+jest.mock('../../src/api/queries', () => ({
+  useCoupons: jest.fn(),
+  useCreateCoupon: jest.fn(),
+  useUpdateCoupon: jest.fn(),
+  useDeleteCoupon: jest.fn(),
 }));
 
 import {
@@ -20,10 +20,10 @@ import {
 } from '../../src/api/queries';
 
 describe('Coupons Page', () => {
-  const mockRefetch = vi.fn();
-  const mockCreateMutateAsync = vi.fn();
-  const mockUpdateMutateAsync = vi.fn();
-  const mockDeleteMutateAsync = vi.fn();
+  const mockRefetch = jest.fn();
+  const mockCreateMutateAsync = jest.fn();
+  const mockUpdateMutateAsync = jest.fn();
+  const mockDeleteMutateAsync = jest.fn();
 
   const mockCouponsData = {
     coupons: {
@@ -37,23 +37,23 @@ describe('Coupons Page', () => {
   };
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
 
-    vi.mocked(useCoupons).mockReturnValue({
+    jest.mocked(useCoupons).mockReturnValue({
       data: mockCouponsData,
       isLoading: false,
       refetch: mockRefetch,
     } as any);
 
-    vi.mocked(useCreateCoupon).mockReturnValue({
+    jest.mocked(useCreateCoupon).mockReturnValue({
       mutateAsync: mockCreateMutateAsync,
     } as any);
 
-    vi.mocked(useUpdateCoupon).mockReturnValue({
+    jest.mocked(useUpdateCoupon).mockReturnValue({
       mutateAsync: mockUpdateMutateAsync,
     } as any);
 
-    vi.mocked(useDeleteCoupon).mockReturnValue({
+    jest.mocked(useDeleteCoupon).mockReturnValue({
       mutateAsync: mockDeleteMutateAsync,
     } as any);
   });
@@ -68,7 +68,7 @@ describe('Coupons Page', () => {
     });
 
     it('should display loading spinner when loading', () => {
-      vi.mocked(useCoupons).mockReturnValue({
+      jest.mocked(useCoupons).mockReturnValue({
         data: null,
         isLoading: true,
         refetch: mockRefetch,
@@ -137,7 +137,7 @@ describe('Coupons Page', () => {
 
   describe('Empty State', () => {
     it('should handle empty coupons list', () => {
-      vi.mocked(useCoupons).mockReturnValue({
+      jest.mocked(useCoupons).mockReturnValue({
         data: {
           coupons: {
             coupons: [],

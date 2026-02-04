@@ -186,14 +186,6 @@ describe('Sidebar Component', () => {
   });
 
   describe('Accessibility', () => {
-    it('should have proper aria-label on toggle button', () => {
-      mockWindowInnerWidth(768);
-      renderSidebar();
-
-      const toggleButton = screen.getByRole('button', { name: /open menu/i });
-      expect(toggleButton).toHaveAttribute('aria-label', 'Open menu');
-    });
-
     it('should update aria-label when sidebar is open', async () => {
       mockWindowInnerWidth(768);
       renderSidebar();

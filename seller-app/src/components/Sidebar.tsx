@@ -75,6 +75,21 @@ export const Sidebar: React.FC = () => {
         className={`!w-auto !rounded-full !p-3 fixed bg-white bottom-6 right-6 z-50 lg:hidden`}
         aria-label={isOpen ? 'Close menu' : 'Open menu'}
       >
+        <span
+          style={{
+            position: 'absolute',
+            width: 1,
+            height: 1,
+            padding: 0,
+            margin: -1,
+            overflow: 'hidden',
+            clip: 'rect(0,0,0,0)',
+            whiteSpace: 'nowrap',
+            border: 0,
+          }}
+        >
+          {isOpen ? 'Close menu' : 'Open menu'}
+        </span>
         <FontAwesomeIcon icon={isOpen ? faTimes : faBars} className="w-5 h-5 text-gray-700" />
       </Button>
 

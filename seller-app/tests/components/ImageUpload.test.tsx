@@ -1,5 +1,5 @@
-import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { useState } from 'react';
 
 // Mock the ImageUpload component to avoid process.env issues
 // Since the real component uses process.env.VITE_CLOUDINARY_*, we create a mock
@@ -8,10 +8,10 @@ const MockImageUpload: React.FC<{
   onImageUpload: (url: string) => void;
   onRemove?: () => void;
 }> = ({ currentImage, onImageUpload, onRemove }) => {
-  const [preview, setPreview] = React.useState(currentImage);
-  const [isUploading, setIsUploading] = React.useState(false);
-  const [error, setError] = React.useState('');
-  const [urlInput, setUrlInput] = React.useState('');
+  const [preview, setPreview] = useState(currentImage || '');
+  const [isUploading, setIsUploading] = useState(false);
+  const [error, setError] = useState('');
+  const [urlInput, setUrlInput] = useState('');
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];

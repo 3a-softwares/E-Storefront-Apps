@@ -1,34 +1,34 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach, jest } from '@jest/globals';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { render, mockDashboardStats, mockOrder } from '../test-utils';
 import { Dashboard } from '../../src/pages/Dashboard';
 
 // Mock the API queries
-vi.mock('../api/queries', () => ({
-  useDashboardStats: vi.fn(),
-  useOrders: vi.fn(),
+jest.mock('../../src/api/queries', () => ({
+  useDashboardStats: jest.fn(),
+  useOrders: jest.fn(),
 }));
 
 import { useDashboardStats, useOrders } from '../../src/api/queries';
 
 describe('Dashboard', () => {
-  const mockRefetch = vi.fn();
+  const mockRefetch = jest.fn();
 
   beforeEach(() => {
-    vi.clearAllMocks();
+    jest.clearAllMocks();
   });
 
   describe('Loading State', () => {
     it('should display loading spinner when data is loading', () => {
-      vi.mocked(useDashboardStats).mockReturnValue({
+      (useDashboardStats as jest.Mock).mockReturnValue({
         data: null,
         isLoading: true,
         error: null,
         refetch: mockRefetch,
       } as any);
 
-      vi.mocked(useOrders).mockReturnValue({
+      (useOrders as jest.Mock).mockReturnValue({
         data: null,
         isLoading: true,
       } as any);
@@ -43,14 +43,14 @@ describe('Dashboard', () => {
   describe('Error State', () => {
     it('should display error message when fetch fails', () => {
       const errorMessage = 'Failed to fetch dashboard data';
-      vi.mocked(useDashboardStats).mockReturnValue({
+      (useDashboardStats as jest.Mock).mockReturnValue({
         data: null,
         isLoading: false,
         error: new Error(errorMessage),
         refetch: mockRefetch,
       } as any);
 
-      vi.mocked(useOrders).mockReturnValue({
+      (useOrders as jest.Mock).mockReturnValue({
         data: null,
         isLoading: false,
       } as any);
@@ -62,14 +62,14 @@ describe('Dashboard', () => {
     });
 
     it('should have retry button on error', async () => {
-      vi.mocked(useDashboardStats).mockReturnValue({
+      (useDashboardStats as jest.Mock).mockReturnValue({
         data: null,
         isLoading: false,
         error: new Error('Error'),
         refetch: mockRefetch,
       } as any);
 
-      vi.mocked(useOrders).mockReturnValue({
+      (useOrders as jest.Mock).mockReturnValue({
         data: null,
         isLoading: false,
       } as any);
@@ -85,14 +85,14 @@ describe('Dashboard', () => {
 
   describe('Success State', () => {
     beforeEach(() => {
-      vi.mocked(useDashboardStats).mockReturnValue({
+      (useDashboardStats as jest.Mock).mockReturnValue({
         data: { dashboardStats: mockDashboardStats() },
         isLoading: false,
         error: null,
         refetch: mockRefetch,
       } as any);
 
-      vi.mocked(useOrders).mockReturnValue({
+      (useOrders as jest.Mock).mockReturnValue({
         data: {
           orders: {
             orders: [mockOrder()],
@@ -133,7 +133,7 @@ describe('Dashboard', () => {
     });
 
     it('should display alerts when there are pending orders', () => {
-      vi.mocked(useDashboardStats).mockReturnValue({
+      (useDashboardStats as jest.Mock).mockReturnValue({
         data: {
           dashboardStats: { ...mockDashboardStats(), pendingOrders: 15 },
         },
@@ -150,7 +150,7 @@ describe('Dashboard', () => {
 
   describe('Alerts', () => {
     it('should allow dismissing alerts', async () => {
-      vi.mocked(useDashboardStats).mockReturnValue({
+      (useDashboardStats as jest.Mock).mockReturnValue({
         data: {
           dashboardStats: { ...mockDashboardStats(), pendingOrders: 15 },
         },
@@ -159,7 +159,7 @@ describe('Dashboard', () => {
         refetch: mockRefetch,
       } as any);
 
-      vi.mocked(useOrders).mockReturnValue({
+      (useOrders as jest.Mock).mockReturnValue({
         data: {
           orders: {
             orders: [mockOrder({ orderStatus: 'PENDING' })],

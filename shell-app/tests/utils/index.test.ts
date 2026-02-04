@@ -10,17 +10,13 @@ jest.mock('@3asoftwares/utils/client', () => ({
 }));
 
 describe('Utils', () => {
-  const originalLocation = window.location;
-
   beforeEach(() => {
     jest.clearAllMocks();
-    // Mock window.location
-    delete (window as any).location;
-    window.location = { href: '' } as Location;
-  });
-
-  afterEach(() => {
-    window.location = originalLocation;
+    // Mock only window.location.href
+    Object.defineProperty(window, 'location', {
+      writable: true,
+      value: { href: '' },
+    });
   });
 
   describe('MFE_CONFIG', () => {
