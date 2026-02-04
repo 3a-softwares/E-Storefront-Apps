@@ -304,7 +304,7 @@ export const AuthForm: React.FC<AuthFormProps> = ({
             Reset your password
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Enter your email and we'll send you a reset link
+            Enter your email and we`&apos;`ll send you a reset link
           </p>
         </div>
 

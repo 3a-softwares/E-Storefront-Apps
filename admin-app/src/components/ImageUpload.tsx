@@ -24,8 +24,11 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
   const CLOUDINARY_CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
   const CLOUDINARY_UPLOAD_PRESET = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 
-  const isCloudinaryConfigured = CLOUDINARY_CLOUD_NAME && CLOUDINARY_UPLOAD_PRESET && 
-    CLOUDINARY_CLOUD_NAME !== 'your-cloud-name' && CLOUDINARY_UPLOAD_PRESET !== 'your-upload-preset';
+  const isCloudinaryConfigured =
+    CLOUDINARY_CLOUD_NAME &&
+    CLOUDINARY_UPLOAD_PRESET &&
+    CLOUDINARY_CLOUD_NAME !== 'your-cloud-name' &&
+    CLOUDINARY_UPLOAD_PRESET !== 'your-upload-preset';
 
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -90,7 +93,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
       setError('Please enter a valid URL');
       return;
     }
-    
+
     // Basic URL validation
     try {
       new URL(urlInput);

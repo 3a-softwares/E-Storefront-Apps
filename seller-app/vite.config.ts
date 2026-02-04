@@ -7,15 +7,10 @@ import { SERVICE_URLS, SHELL_APP_URL } from '@3asoftwares/utils';
 export default defineConfig(({ mode }) => {
   // Load env files based on mode (development, production, etc.)
   const env = loadEnv(mode, process.cwd(), '');
-  
+
   return {
     resolve: {
-      alias: {
-        '@3asoftwares/ui/styles.css': path.resolve(
-          __dirname,
-          '../../packages/ui-library/dist/style.css'
-        ),
-      },
+      alias: {},
     },
     plugins: [
       react(),

@@ -2,8 +2,8 @@
   "git": {
     "deploymentEnabled": false
   },
-  "installCommand": "cd ../.. && yarn install",
-  "buildCommand": "cd ../.. && yarn build:types && yarn build:utils && yarn build:ui && yarn build:seller",
+  "installCommand": "yarn install",
+  "buildCommand": "yarn build:seller",
   "outputDirectory": "dist",
   "framework": "vite",
   "devCommand": "yarn dev",

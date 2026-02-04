@@ -390,8 +390,8 @@ export const Coupons: React.FC = () => {
                 {createCoupon.isPending || updateCoupon.isPending
                   ? 'Saving...'
                   : editingCoupon
-                  ? 'Update'
-                  : 'Create'}
+                    ? 'Update'
+                    : 'Create'}
               </Button>
             </div>
           </form>

@@ -52,7 +52,7 @@ export const Sidebar: React.FC = () => {
         path: `${SUPPORT_URL}?userId=${userId}`,
         icon: faHeadset,
         label: 'Support Portal',
-        isExternal: true
+        isExternal: true,
       },
     ];
   }, [user]);
@@ -160,17 +160,19 @@ export const Sidebar: React.FC = () => {
                 const isActive = !item.isExternal && location.pathname === item.path;
                 const linkClassName = `
                   group flex items-center gap-3 w-10 h-10 rounded-lg transition-all duration-200
-                  ${isActive
-                    ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25'
-                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
+                  ${
+                    isActive
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-lg shadow-blue-500/25'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-900 dark:hover:text-white'
                   }
                   ${!sidebarOpen ? 'lg:justify-center lg:px-0' : 'w-full'}
                 `;
                 const iconSpanClassName = `
                   flex items-center justify-center w-10 h-10 rounded-lg transition-colors
-                  ${isActive
-                    ? 'bg-white/20'
-                    : 'bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700'
+                  ${
+                    isActive
+                      ? 'bg-white/20'
+                      : 'bg-gray-100 dark:bg-gray-800 group-hover:bg-gray-200 dark:group-hover:bg-gray-700'
                   }
                   ${!sidebarOpen ? 'lg:bg-transparent lg:dark:bg-transparent' : ''}
                 `;
@@ -206,7 +208,7 @@ export const Sidebar: React.FC = () => {
                         title={!sidebarOpen ? item.label : undefined}
                       >
                         {linkContent}
-                        </Link>
+                      </Link>
                     )}
                   </li>
                 );

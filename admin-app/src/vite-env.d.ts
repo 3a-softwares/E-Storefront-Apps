@@ -1,5 +1,3 @@
-
-
 interface ImportMetaEnv {
   readonly VITE_GRAPHQL_URL: string;
   readonly VITE_AUTH_SERVICE: string;
@@ -10,4 +8,3 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv;
 }
-

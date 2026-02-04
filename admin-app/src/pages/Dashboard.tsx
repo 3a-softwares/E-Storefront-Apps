@@ -61,9 +61,7 @@ export const Dashboard: React.FC = () => {
   return (
     <div className="space-y-4 sm:space-y-6">
       <div className="flex justify-between items-start sm:items-center gap-3">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
-          Dashboard
-        </h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Dashboard</h1>
         <Button onClick={() => refetch()} variant="outline" size="sm" className="!w-auto">
           <FontAwesomeIcon icon={faSync} className="mr-1" />
           Refresh
@@ -82,7 +80,9 @@ export const Dashboard: React.FC = () => {
                   icon={alert.includes('pending') ? faExclamationTriangle : faBell}
                   className="text-yellow-600 dark:text-yellow-400 flex-shrink-0"
                 />
-                <span className="text-sm sm:text-base text-yellow-800 dark:text-yellow-200 truncate">{alert}</span>
+                <span className="text-sm sm:text-base text-yellow-800 dark:text-yellow-200 truncate">
+                  {alert}
+                </span>
               </div>
               <Button
                 variant="ghost"
@@ -100,50 +100,70 @@ export const Dashboard: React.FC = () => {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Total Users</h3>
+            <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
+              Total Users
+            </h3>
             <FontAwesomeIcon icon={faUsers} className="text-lg sm:text-2xl text-blue-600" />
           </div>
           <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
             {totalUsers}
           </p>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-2 hidden sm:block">Registered customers</p>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-2 hidden sm:block">
+            Registered customers
+          </p>
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Total Orders</h3>
+            <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
+              Total Orders
+            </h3>
             <FontAwesomeIcon icon={faShoppingCart} className="text-lg sm:text-2xl text-green-600" />
           </div>
           <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
             {totalOrders}
           </p>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-2 hidden sm:block">All time orders</p>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-2 hidden sm:block">
+            All time orders
+          </p>
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Revenue</h3>
+            <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
+              Revenue
+            </h3>
             <span className="text-lg sm:text-2xl text-purple-600">₹</span>
           </div>
           <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white">
             {formatIndianCompact(Number(totalRevenue))}
           </p>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-2 hidden sm:block">Total earnings</p>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-2 hidden sm:block">
+            Total earnings
+          </p>
         </div>
 
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-3 sm:p-4 lg:p-6">
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">Pending Orders</h3>
+            <h3 className="text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400">
+              Pending Orders
+            </h3>
             <FontAwesomeIcon icon={faClock} className="text-lg sm:text-2xl text-yellow-600" />
           </div>
-          <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-yellow-600 dark:text-yellow-400">{pendingOrders}</p>
-          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-2 hidden sm:block">Requires attention</p>
+          <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-yellow-600 dark:text-yellow-400">
+            {pendingOrders}
+          </p>
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1 sm:mt-2 hidden sm:block">
+            Requires attention
+          </p>
         </div>
       </div>
 
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
         <div className="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700">
-          <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">Recent Orders</h3>
+          <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+            Recent Orders
+          </h3>
         </div>
         <div className="p-3 sm:p-6">
           {recentOrders && recentOrders.orders.orders.length > 0 ? (
@@ -170,10 +190,10 @@ export const Dashboard: React.FC = () => {
                         order.orderStatus === OrderStatus.DELIVERED
                           ? 'success'
                           : order.orderStatus === OrderStatus.CANCELLED
-                          ? 'error'
-                          : order.orderStatus === OrderStatus.PENDING
-                          ? 'warning'
-                          : 'info'
+                            ? 'error'
+                            : order.orderStatus === OrderStatus.PENDING
+                              ? 'warning'
+                              : 'info'
                       }
                     >
                       {order.orderStatus}
@@ -183,7 +203,9 @@ export const Dashboard: React.FC = () => {
               ))}
             </div>
           ) : (
-              <p className="text-gray-500 dark:text-gray-400 text-center py-6 sm:py-8">No recent orders</p>
+            <p className="text-gray-500 dark:text-gray-400 text-center py-6 sm:py-8">
+              No recent orders
+            </p>
           )}
         </div>
       </div>

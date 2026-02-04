@@ -65,7 +65,6 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
       setPreview(imageUrl);
       onImageUpload(imageUrl);
     } catch (err) {
-      
       setError('Failed to upload image. Please try again.');
     } finally {
       setUploading(false);

@@ -1,0 +1,157 @@
+name: Apps CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+      - feature/**
+  pull_request:
+    branches:
+      - main
+      - develop
+
+concurrency:
+  group: apps-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: 18
+
+jobs:
+  # ===================== DETECT CHANGES =====================
+  detect-changes:
+    name: Detect Changed Apps
+    runs-on: ubuntu-latest
+    outputs:
+      admin: ${{ steps.filter.outputs.admin }}
+      seller: ${{ steps.filter.outputs.seller }}
+      shell: ${{ steps.filter.outputs.shell }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            admin:
+              - admin-app/**
+            seller:
+              - seller-app/**
+            shell:
+              - shell-app/**
+
+  # ===================== LINT =====================
+  lint:
+    name: Lint Apps
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+
+  # ===================== FORMAT =====================
+  format:
+    name: Format Check
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn format:check
+
+  # ===================== BUILD =====================
+  build:
+    name: Build (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    needs: [format, detect-changes]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - app: admin-app
+            should_run: ${{ needs.detect-changes.outputs.admin == 'true' }}
+          - app: seller-app
+            should_run: ${{ needs.detect-changes.outputs.seller == 'true' }}
+          - app: shell-app
+            should_run: ${{ needs.detect-changes.outputs.shell == 'true' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+
+      - name: Build App
+        if: matrix.should_run
+        run: yarn build
+        working-directory: ${{ matrix.app }}
+
+  # ===================== TEST =====================
+  test:
+    name: Test (${{ matrix.app }})
+    runs-on: ubuntu-latest
+    needs: [build, detect-changes]
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - app: admin-app
+            should_run: ${{ needs.detect-changes.outputs.admin == 'true' }}
+          - app: seller-app
+            should_run: ${{ needs.detect-changes.outputs.seller == 'true' }}
+          - app: shell-app
+            should_run: ${{ needs.detect-changes.outputs.shell == 'true' }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+
+      - name: Test App
+        if: matrix.should_run
+        run: yarn test -- --passWithNoTests
+        working-directory: ${{ matrix.app }}
+
+  # ===================== SONARQUBE =====================
+  sonarqube:
+    name: SonarQube Analysis
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+
+      - uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  # ===================== SUMMARY =====================
+  summary:
+    name: CI Summary
+    runs-on: ubuntu-latest
+    needs: sonarqube
+    steps:
+      - run: echo "✅ Apps CI completed successfully"

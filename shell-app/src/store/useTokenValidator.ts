@@ -100,7 +100,7 @@ export function useTokenValidator(onUserUpdate?: (user: any) => void) {
 
   const checkAndValidate = useCallback(async () => {
     const now = Date.now();
-    
+
     // Debounce: Skip if we validated recently
     if (now - lastValidationRef.current < MIN_VALIDATION_INTERVAL) {
       return;
@@ -110,10 +110,10 @@ export function useTokenValidator(onUserUpdate?: (user: any) => void) {
     if (isValidatingRef.current) {
       return;
     }
-    
+
     isValidatingRef.current = true;
     lastValidationRef.current = now;
-    
+
     try {
       const result = await validateToken();
 

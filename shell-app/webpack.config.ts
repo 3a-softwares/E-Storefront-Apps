@@ -11,9 +11,9 @@ const nodeEnv = process.env.NODE_ENV || 'development';
 
 // Load .env files in order of priority (later files override earlier ones)
 const envFiles = [
-  '.env.local',                    // Local defaults (optional)
-  `.env.${nodeEnv}`,               // Environment-specific (.env.development, .env.production)
-  '.env',                          // Base .env file (highest priority)
+  '.env.local', // Local defaults (optional)
+  `.env.${nodeEnv}`, // Environment-specific (.env.development, .env.production)
+  '.env', // Base .env file (highest priority)
 ];
 
 envFiles.forEach((file) => {
@@ -42,18 +42,7 @@ module.exports = {
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.jsx', '.js', '.css'],
-    // Monorepo package aliases - resolve to built dist folders with subpath support
-    alias: {
-      '@3asoftwares/ui/styles.css': path.resolve(
-        __dirname,
-        '../../packages/ui-library/dist/style.css'
-      ),
-      '@3asoftwares/ui': path.resolve(__dirname, '../../packages/ui-library/dist/ui-library.es.js'),
-      '@3asoftwares/utils/client': path.resolve(__dirname, '../../packages/utils/dist/client.mjs'),
-      '@3asoftwares/utils/server': path.resolve(__dirname, '../../packages/utils/dist/server.mjs'),
-      '@3asoftwares/utils': path.resolve(__dirname, '../../packages/utils/dist/index.mjs'),
-      '@3asoftwares/types': path.resolve(__dirname, '../../packages/types/dist/index.mjs'),
-    },
+    alias: {},
     fallback: {
       crypto: false,
       url: false,

@@ -117,7 +117,8 @@ function App() {
         {isAuthenticated && <Sidebar />}
 
         <div
-          className={`flex-1 w-full ${isAuthenticated ? 'lg:ml-64' : ''} ${isAuthenticated ? 'mt-[60px] sm:mt-[69px]' : ''
+          className={`flex-1 w-full ${isAuthenticated ? 'lg:ml-64' : ''} ${
+            isAuthenticated ? 'mt-[60px] sm:mt-[69px]' : ''
           }`}
         >
           {isAuthenticated ? (

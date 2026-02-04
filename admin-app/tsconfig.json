@@ -1,5 +1,4 @@
 {
-  "extends": "../../packages/utils/config/tsconfig.base.json",
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
@@ -8,5 +7,12 @@
     "moduleResolution": "bundler",
     "jsx": "react-jsx"
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "tests/pages/Users.test.tsx",
+    "tests/pages/Products.test.tsx",
+    "tests/pages/Orders.test.tsx",
+    "tests/pages/Dashboard.test.tsx",
+    "tests/pages/Coupons.test.tsx"
+  ]
 }

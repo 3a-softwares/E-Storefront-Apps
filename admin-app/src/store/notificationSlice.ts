@@ -9,7 +9,10 @@ const notificationSlice = createSlice({
   name: 'notifications',
   initialState,
   reducers: {
-    addNotification: (state, action: PayloadAction<Omit<AdminNotification, 'id' | 'timestamp'>>) => {
+    addNotification: (
+      state,
+      action: PayloadAction<Omit<AdminNotification, 'id' | 'timestamp'>>
+    ) => {
       state.notifications.push({
         ...action.payload,
         id: Date.now().toString(),

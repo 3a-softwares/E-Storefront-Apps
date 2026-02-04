@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { render, mockUser, mockPagination } from '../../tests/test-utils';
-import { Users } from './Users';
+import { render, mockUser, mockPagination } from '../test-utils';
+import { Users } from '../../src/pages/Users';
 
 // Mock the API queries
 vi.mock('../api/queries', () => ({
@@ -11,7 +11,7 @@ vi.mock('../api/queries', () => ({
   useUpdateUserRole: vi.fn(),
 }));
 
-import { useUsers, useDeleteUser, useUpdateUserRole } from '../api/queries';
+import { useUsers, useDeleteUser, useUpdateUserRole } from '../../src/api/queries';
 
 describe('Users Page', () => {
   const mockRefetch = vi.fn();

@@ -10,25 +10,29 @@ jest.mock('../../src/i18n/I18nContext', () => ({
         'welcome.title': 'Welcome to',
         'welcome.brandName': '3A Softwares',
         'welcome.subtitle': 'Your Complete E-Commerce Platform Solution',
-        'welcome.description': 'A modern, scalable, and feature-rich e-commerce platform built with cutting-edge technologies to help businesses grow and succeed in the digital marketplace.',
+        'welcome.description':
+          'A modern, scalable, and feature-rich e-commerce platform built with cutting-edge technologies to help businesses grow and succeed in the digital marketplace.',
         'welcome.getStarted': 'Get Started',
         'welcome.learnMore': 'Learn More',
         // Features section
         'features.title': 'Platform Features',
         'features.adminPortal.title': 'Admin Portal',
-        'features.adminPortal.description': 'Comprehensive dashboard to manage your entire e-commerce platform with powerful analytics and reporting tools.',
+        'features.adminPortal.description':
+          'Comprehensive dashboard to manage your entire e-commerce platform with powerful analytics and reporting tools.',
         'features.adminPortal.features.userManagement': 'User & seller management',
         'features.adminPortal.features.analytics': 'Real-time analytics',
         'features.adminPortal.features.orderTracking': 'Order tracking & management',
         'features.adminPortal.button': 'Open Admin Portal',
         'features.sellerPortal.title': 'Seller Portal',
-        'features.sellerPortal.description': 'Easy-to-use interface for sellers to manage their products, inventory, and orders efficiently.',
+        'features.sellerPortal.description':
+          'Easy-to-use interface for sellers to manage their products, inventory, and orders efficiently.',
         'features.sellerPortal.features.productCatalog': 'Product catalog management',
         'features.sellerPortal.features.inventoryTracking': 'Inventory tracking',
         'features.sellerPortal.features.salesAnalytics': 'Sales analytics',
         'features.sellerPortal.button': 'Open Seller Portal',
         'features.storefront.title': 'Customer Storefront',
-        'features.storefront.description': 'Beautiful and responsive storefront providing seamless shopping experience for customers.',
+        'features.storefront.description':
+          'Beautiful and responsive storefront providing seamless shopping experience for customers.',
         'features.storefront.features.productSearch': 'Advanced product search',
         'features.storefront.features.secureCheckout': 'Secure checkout process',
         'features.storefront.features.orderTracking': 'Order tracking',
@@ -209,7 +213,7 @@ describe('WelcomePage Component', () => {
 
     // Get the CTA section support button (ghost variant)
     const supportButtons = screen.getAllByRole('button', { name: /support/i });
-    const ctaSupportButton = supportButtons.find(btn => btn.textContent === 'Support');
+    const ctaSupportButton = supportButtons.find((btn) => btn.textContent === 'Support');
     fireEvent.click(ctaSupportButton!);
 
     expect(screen.getByText(/contact support/i)).toBeInTheDocument();

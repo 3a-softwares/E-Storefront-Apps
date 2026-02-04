@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { render, mockCoupon, mockPagination } from '../../tests/test-utils';
-import { Coupons } from './Coupons';
+import { render, mockCoupon, mockPagination } from '../test-utils';
+import { Coupons } from '../../src/pages/Coupons';
 
 // Mock the API queries
 vi.mock('../api/queries', () => ({
@@ -12,7 +12,12 @@ vi.mock('../api/queries', () => ({
   useDeleteCoupon: vi.fn(),
 }));
 
-import { useCoupons, useCreateCoupon, useUpdateCoupon, useDeleteCoupon } from '../api/queries';
+import {
+  useCoupons,
+  useCreateCoupon,
+  useUpdateCoupon,
+  useDeleteCoupon,
+} from '../../src/api/queries';
 
 describe('Coupons Page', () => {
   const mockRefetch = vi.fn();

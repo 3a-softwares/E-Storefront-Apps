@@ -1,46 +1,151 @@
-# e-apps — Frontend Applications Monorepo
+# E-Storefront Apps — Frontend Monorepo
 
-Frontend applications for the e-commerce platform (Admin Dashboard, Seller Portal, Shell App).
+A modern, scalable monorepo containing three interconnected e-commerce applications:
 
-## Structure
+- **Admin App**: Dashboard for platform management (users, orders, products, analytics)
+- **Seller App**: Portal for sellers to manage products, inventory, and earnings
+- **Shell App**: Central launcher for navigating all applications
 
-```
-e-apps/
-├── apps/
-│   ├── admin-app/       # Admin Dashboard
-│   ├── seller-app/      # Seller Portal
-│   └── shell-app/       # Shell/Host Application
-└── package.json
-```
+> 📚 **New here?** Start with [INDEX.md](./INDEX.md) for a complete documentation roadmap
 
-## Quick Start
+## 📋 Table of Contents
+
+- [Quick Start](#quick-start)
+- [Structure](#structure)
+- [Available Commands](#available-commands)
+- [Technology Stack](#technology-stack)
+- [CI/CD Pipeline](#cicd-pipeline)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+
+## 🚀 Quick Start
 
 ```bash
-# Install dependencies
-yarn install
+# 1. Setup (choose one)
+bash setup.sh              # Unix/macOS
+setup.bat                  # Windows (PowerShell)
+yarn install && yarn build # Manual
 
-# Development (all apps)
+# 2. Start developing
 yarn dev
 
-# Development (individual app)
-yarn dev:admin
-yarn dev:seller
-yarn dev:shell
+# 3. Visit the apps
+# Admin: http://localhost:3001
+# Seller: http://localhost:3002
+# Shell: http://localhost:3000
+```
 
-# Build
+**Need help?** See [GETTING-STARTED.md](./GETTING-STARTED.md) or [QUICK-REFERENCE.md](./QUICK-REFERENCE.md)
+
+## 🏗️ Structure
+
+```
+E-Storefront-Apps/
+├── admin-app/                  # Admin Dashboard (Vite + React)
+│   ├── src/
+│   ├── tests/
+│   ├── vite.config.ts
+│   ├── jest.config.js
+│   └── package.json
+├── seller-app/                 # Seller Portal (Vite + React)
+│   ├── src/
+│   ├── tests/
+│   ├── vite.config.ts
+│   ├── jest.config.js
+│   └── package.json
+├── shell-app/                  # Shell App (Webpack + React)
+│   ├── src/
+│   ├── tests/
+│   ├── webpack.config.ts
+│   ├── jest.config.js
+│   └── package.json
+├── .github/
+│   ├── workflows/
+│   │   └── ci-cd.yml           # CI/CD Pipeline
+│   ├── WORKFLOW-DOCUMENTATION.md
+│   ├── CODEOWNERS
+│   └── pull_request_template.md
+├── package.json                # Root workspace config
+├── sonar-project.properties    # SonarQube configuration
+├── .eslintrc.json              # Root ESLint config
+├── .prettierrc                 # Code formatting rules
+├── Makefile                    # Make shortcuts
+├── setup.sh / setup.bat        # Setup scripts
+├── INDEX.md                    # Documentation roadmap
+├── GETTING-STARTED.md          # Getting started guide
+├── QUICK-REFERENCE.md          # Command reference
+└── CI-CD-SETUP.md              # CI/CD setup guide
+```
+
+### Development
+
+```bash
+# Start all apps in development mode
+yarn dev
+
+# Start individual apps
+yarn dev:admin      # Admin Dashboard (Vite)
+yarn dev:seller     # Seller Portal (Vite)
+yarn dev:shell      # Shell App (Webpack)
+```
+
+### Building
+
+```bash
+# Build all apps for production
 yarn build
 
-# Test
-yarn test
+# Build individual apps
+yarn build:admin
+yarn build:seller
+yarn build:shell
+```
 
-# Lint
+### Testing
+
+```bash
+# Run all tests with coverage
+yarn test
+yarn test:coverage
+
+# Run tests for specific app
+yarn test:admin
+yarn test:seller
+yarn test:shell
+
+# Run tests in watch mode
+yarn test --watch
+```
+
+### Linting & Formatting
+
+```bash
+# Check code style and quality
 yarn lint
+
+# Lint specific app
+yarn lint:admin
+yarn lint:seller
+yarn lint:shell
+
+# Fix linting issues automatically
 yarn lint:fix
 ```
 
-## Deployment
+### Build Failures
 
-Configured for **Vercel** deployment. Each app deploys as a separate Vercel project.
+```bash
+# Clear cache and reinstall
+rm -rf node_modules yarn.lock
+yarn install
+yarn build
+```
+
+### Port Already in Use
+
+```bash
+lsof -ti:3001 | xargs kill -9
+```
 
 ### Repository Secrets Required
 
@@ -54,50 +159,3 @@ Configured for **Vercel** deployment. Each app deploys as a separate Vercel proj
 | `SONAR_TOKEN`              | SonarQube/SonarCloud token (optional)      |
 | `SONAR_HOST_URL`           | SonarQube host URL (optional, self-hosted) |
 | `SONAR_ORGANIZATION`       | SonarCloud organization key (optional)     |
-
-### Vercel Configuration (per app)
-
-Each app includes `vercel.json` with build and deployment settings. Adjust as needed:
-
-```json
-{
-  "buildCommand": "yarn build:admin",
-  "outputDirectory": "apps/admin-app/dist"
-}
-```
-
-## CI/CD
-
-Automated via GitHub Actions (`.github/workflows/ci-cd.yml`):
-
-1. **Lint, Build, Test** — runs on all branches
-2. **SonarQube Scan** — code quality analysis
-3. **Deploy to Vercel** — on `main` branch push
-
-## Testing & Coverage
-
-```bash
-# Run tests with coverage
-yarn test:coverage
-
-# View coverage report
-# Coverage reports are uploaded to Codecov
-```
-
-## SonarQube Integration
-
-Configure in your SonarQube instance or SonarCloud:
-
-```properties
-sonar.projectKey=e-apps
-sonar.projectName=e-apps
-sonar.sources=apps
-sonar.coverage.exclusions=**/node_modules/**,**/*.spec.ts,**/*.test.ts
-```
-
-## Notes
-
-- Uses Yarn workspaces for monorepo management
-- Shared dependencies are managed at root
-- Each app can have independent build & deployment
-- Test framework: Jest (React Testing Library for UI)

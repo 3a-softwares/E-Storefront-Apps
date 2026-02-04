@@ -2,20 +2,15 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import federation from '@originjs/vite-plugin-federation';
 import * as path from 'path';
-import { SERVICE_URLS, SHELL_APP_URL, SUPPORT_APP_URL } from '../../packages/utils/src/constants';
+import { SERVICE_URLS, SHELL_APP_URL, SUPPORT_APP_URL } from '@3asoftwares/utils';
 
 export default defineConfig(({ mode }) => {
   // Load env files based on mode (development, production, etc.)
   const env = loadEnv(mode, process.cwd(), '');
-  
+
   return {
     resolve: {
-      alias: {
-        '@3asoftwares/ui/styles.css': path.resolve(
-          __dirname,
-          '../../packages/ui-library/dist/style.css'
-        ),
-      },
+      alias: {},
     },
     plugins: [
       react(),

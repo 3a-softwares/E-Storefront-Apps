@@ -110,11 +110,11 @@ export const SellerOrders: React.FC = () => {
           <Spinner />
         </div>
       ) : orders.length === 0 ? (
-          <div className="text-center py-8 sm:py-12 bg-white dark:bg-gray-800 rounded-lg">
-            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">No orders yet</p>
+        <div className="text-center py-8 sm:py-12 bg-white dark:bg-gray-800 rounded-lg">
+          <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base">No orders yet</p>
         </div>
       ) : (
-            <div className="space-y-3 sm:space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {orders.map((order) => (
             <div
               key={order._id}

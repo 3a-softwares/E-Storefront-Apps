@@ -14,8 +14,8 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@3asoftwares/ui": "*",
-    "@3asoftwares/utils": "*",
+    "@3asoftwares/types": "^1.0.18",
+    "@3asoftwares/utils": "^1.0.18",
     "@babel/core": "^7.23.0",
     "@babel/preset-react": "^7.22.15",
     "@babel/preset-typescript": "^7.23.0",

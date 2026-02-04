@@ -35,7 +35,18 @@ jest.mock('@3asoftwares/utils/client', () => ({
 
 // Mock the UI library Header component
 jest.mock('@3asoftwares/ui', () => ({
-  Header: ({ appName, appBadge, user, onLogin, onCreateAccount, onLogout, theme, onToggleTheme, extraContent, children }: any) => (
+  Header: ({
+    appName,
+    appBadge,
+    user,
+    onLogin,
+    onCreateAccount,
+    onLogout,
+    theme,
+    onToggleTheme,
+    extraContent,
+    children,
+  }: any) => (
     <header data-testid="mock-header">
       <span data-testid="app-name">{appName || '3A Softwares'}</span>
       {appBadge && <span>{appBadge}</span>}
@@ -44,7 +55,9 @@ jest.mock('@3asoftwares/ui', () => ({
       {!user && onCreateAccount && <button onClick={onCreateAccount}>Sign Up</button>}
       {user && <span data-testid="user-name">{user.name}</span>}
       {user && onLogout && <button onClick={onLogout}>Logout</button>}
-      <button aria-label="Toggle theme" onClick={onToggleTheme}>Theme</button>
+      <button aria-label="Toggle theme" onClick={onToggleTheme}>
+        Theme
+      </button>
       {children}
     </header>
   ),

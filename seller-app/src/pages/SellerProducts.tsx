@@ -133,14 +133,16 @@ export const SellerProducts: React.FC = () => {
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 sm:p-8 lg:p-12 text-center">
           <div className="text-4xl sm:text-5xl lg:text-6xl mb-3 sm:mb-4">📦</div>
           <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">No products yet</h3>
-          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">Start by adding your first product</p>
+          <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6">
+            Start by adding your first product
+          </p>
           <Button onClick={() => navigate('/products/new')} className="text-sm sm:text-base">
             <FontAwesomeIcon icon={faPlus} className="mr-2" />
             Add Your First Product
           </Button>
         </div>
       ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {products?.map((product) => (
             <div
               key={product._id}
@@ -185,8 +187,8 @@ export const SellerProducts: React.FC = () => {
                         product.stock > 10
                           ? 'bg-green-100 text-green-800'
                           : product.stock > 0
-                          ? 'bg-yellow-100 text-yellow-800'
-                          : 'bg-red-100 text-red-800'
+                            ? 'bg-yellow-100 text-yellow-800'
+                            : 'bg-red-100 text-red-800'
                       }`}
                     >
                       {product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}

@@ -9,7 +9,7 @@ import {
 import { Button, Modal, Badge, Table, Spinner, Pagination, Select, Confirm } from '@3asoftwares/ui';
 import type { OrderGraphQL as Order, OrderStatus, PaymentStatus } from '@3asoftwares/types';
 import { PaymentMethodReverse } from '@3asoftwares/types';
-import { formatIndianCompact } from '@3asoftwares/utils/client';
+import { formatIndianCompact, Logger } from '@3asoftwares/utils/client';
 
 export const Orders: React.FC = () => {
   const [page, setPage] = useState(1);
@@ -30,14 +30,18 @@ export const Orders: React.FC = () => {
     try {
       await updateOrderStatus.mutateAsync({ id: orderId, status });
       refetch();
-    } catch (error) {}
+    } catch (error) {
+      Logger.error('Failed to update order status', error);
+    }
   };
 
   const handlePaymentStatusChange = async (id: string, status: PaymentStatus) => {
     try {
       await updatePaymentStatus.mutateAsync({ id, status });
       refetch();
-    } catch (error) {}
+    } catch (error) {
+      Logger.error('Failed to update order status', error);
+    }
   };
 
   const handleCancelOrder = async (id: string) => {
@@ -52,6 +56,7 @@ export const Orders: React.FC = () => {
         await cancelOrder.mutateAsync(confirmOrderId);
         refetch();
       } catch (error) {
+        Logger.error('Failed to update order status', error);
       } finally {
         setIsCancelling(false);
         setConfirmOpen(false);
@@ -118,10 +123,10 @@ export const Orders: React.FC = () => {
             order.paymentStatus === 'PAID'
               ? 'success'
               : order.paymentStatus === 'FAILED'
-              ? 'error'
-              : order.paymentStatus === 'REFUNDED'
-              ? 'warning'
-              : 'info'
+                ? 'error'
+                : order.paymentStatus === 'REFUNDED'
+                  ? 'warning'
+                  : 'info'
           }
         >
           {order.paymentStatus}
@@ -221,8 +226,8 @@ export const Orders: React.FC = () => {
                   orderDetail.order.orderStatus === 'DELIVERED'
                     ? 'success'
                     : orderDetail.order.orderStatus === 'CANCELLED'
-                    ? 'error'
-                    : 'info'
+                      ? 'error'
+                      : 'info'
                 }
               >
                 {orderDetail.order.orderStatus}

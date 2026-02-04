@@ -55,7 +55,9 @@ export const SellerEarnings: React.FC = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">Sales & Earnings</h1>
+      <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-6 sm:mb-8">
+        Sales & Earnings
+      </h1>
 
       {error && (
         <div className="bg-red-50 border border-red-200 text-red-700 px-3 sm:px-4 py-2 sm:py-3 rounded-lg mb-4 sm:mb-6 text-sm sm:text-base">
@@ -69,53 +71,55 @@ export const SellerEarnings: React.FC = () => {
         </div>
       ) : (
         <>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
-              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-                <p className="text-gray-600 text-xs sm:text-sm font-medium">Total Revenue</p>
-                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mt-1 sm:mt-2">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 sm:mb-8">
+            <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+              <p className="text-gray-600 text-xs sm:text-sm font-medium">Total Revenue</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mt-1 sm:mt-2">
                 {formatIndianCompact(summary?.totalRevenue || 0)}
               </p>
             </div>
 
-              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-                <p className="text-gray-600 text-xs sm:text-sm font-medium">Total Orders</p>
-                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mt-1 sm:mt-2">{summary?.totalOrders || 0}</p>
+            <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+              <p className="text-gray-600 text-xs sm:text-sm font-medium">Total Orders</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mt-1 sm:mt-2">
+                {summary?.totalOrders || 0}
+              </p>
             </div>
 
-              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-                <p className="text-gray-600 text-xs sm:text-sm font-medium">
+            <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+              <p className="text-gray-600 text-xs sm:text-sm font-medium">
                 Commission ({((summary?.commissionRate || 0.1) * 100).toFixed(0)}%)
               </p>
-                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-orange-600 mt-1 sm:mt-2">
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-orange-600 mt-1 sm:mt-2">
                 {formatIndianCompact(summary?.totalCommission || 0)}
               </p>
             </div>
 
-              <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-                <p className="text-gray-600 text-xs sm:text-sm font-medium">Payout</p>
-                <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-600 mt-1 sm:mt-2">
+            <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+              <p className="text-gray-600 text-xs sm:text-sm font-medium">Payout</p>
+              <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-green-600 mt-1 sm:mt-2">
                 {formatIndianCompact(summary?.totalPayout || 0)}
               </p>
             </div>
           </div>
 
-            <div className="bg-white rounded-lg shadow overflow-x-auto">
+          <div className="bg-white rounded-lg shadow overflow-x-auto">
             <table className="min-w-full divide-y divide-gray-200">
               <thead className="bg-gray-50">
                 <tr>
-                    <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase">
                     Period
                   </th>
-                    <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase">
                     Revenue
                   </th>
-                    <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase hidden sm:table-cell">
+                  <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase hidden sm:table-cell">
                     Orders
                   </th>
-                    <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase hidden sm:table-cell">
+                  <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase hidden sm:table-cell">
                     Commission
                   </th>
-                    <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase">
+                  <th className="px-3 sm:px-6 py-2 sm:py-3 text-left text-xs font-medium text-gray-500 uppercase">
                     Payout
                   </th>
                 </tr>
@@ -123,7 +127,10 @@ export const SellerEarnings: React.FC = () => {
               <tbody className="bg-white divide-y divide-gray-200">
                 {monthlyEarnings.length === 0 ? (
                   <tr>
-                      <td colSpan={5} className="px-3 sm:px-6 py-8 sm:py-12 text-center text-gray-500 text-sm">
+                    <td
+                      colSpan={5}
+                      className="px-3 sm:px-6 py-8 sm:py-12 text-center text-gray-500 text-sm"
+                    >
                       No earnings data available yet. Start selling to see your earnings!
                     </td>
                   </tr>

@@ -1,10 +1,12 @@
 {
-  "name": "e-apps",
+  "name": "3asoftwares",
   "version": "1.0.0",
   "private": true,
   "description": "Frontend applications monorepo - Admin, Seller, Shell apps",
   "workspaces": [
-    "apps/*"
+    "admin-app",
+    "seller-app",
+    "shell-app"
   ],
   "scripts": {
     "dev:admin": "yarn workspace @3asoftwares/admin-app run dev",
@@ -24,14 +26,16 @@
     "lint:shell": "yarn workspace @3asoftwares/shell-app run lint",
     "lint:seller": "yarn workspace @3asoftwares/seller-app run lint",
     "lint": "yarn lint:admin && yarn lint:shell && yarn lint:seller",
-    "lint:fix": "yarn workspace @3asoftwares/admin-app run lint:fix && yarn workspace @3asoftwares/shell-app run lint:fix && yarn workspace @3asoftwares/seller-app run lint:fix"
+    "lint:fix": "yarn workspace @3asoftwares/admin-app run lint:fix && yarn workspace @3asoftwares/shell-app run lint:fix && yarn workspace @3asoftwares/seller-app run lint:fix",
+    "format": "prettier --write \"**/*.{ts,tsx,json,md,yml,yaml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,json,md,yml,yaml}\""
   },
   "devDependencies": {
     "concurrently": "^8.2.2",
-    "typescript": "^5.9.3"
+    "prettier": "^3.8.1",
+    "typescript": "5.3.3"
   },
   "engines": {
-    "node": ">=18.0.0",
-    "yarn": ">=3.0.0"
+    "node": ">=18.0.0"
   }
 }

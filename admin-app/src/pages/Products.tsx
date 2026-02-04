@@ -336,8 +336,8 @@ export const Products: React.FC = () => {
               {createProduct.isPending || updateProduct.isPending
                 ? 'Saving...'
                 : editingProduct
-                ? 'Update Product'
-                : 'Create Product'}
+                  ? 'Update Product'
+                  : 'Create Product'}
             </Button>
           </div>
         </div>

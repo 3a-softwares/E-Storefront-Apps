@@ -1,6 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 import { Logger } from '@3asoftwares/utils/client';
 
+// Declare webpack runtime globals for Module Federation
+declare const __webpack_share_scopes__: { default: Record<string, unknown> } | undefined;
+
 interface RemoteModuleConfig {
   scope: string;
   module: string;
@@ -87,7 +90,6 @@ export function loadRemoteModule<T = any>(config: RemoteModuleConfig): Promise<T
   return new Promise((resolve, reject) => {
     const { scope, module } = config;
 
-    // @ts-ignore - Module Federation runtime API
     const container = (window as any)[scope];
 
     if (!container) {
@@ -97,9 +99,7 @@ export function loadRemoteModule<T = any>(config: RemoteModuleConfig): Promise<T
       return;
     }
 
-    // @ts-ignore - Module Federation runtime API
     const shareScope =
-      // @ts-ignore - Webpack Module Federation global
       typeof __webpack_share_scopes__ !== 'undefined' ? __webpack_share_scopes__.default : {};
     container
       .init(shareScope)

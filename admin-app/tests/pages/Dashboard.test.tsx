@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { render, mockDashboardStats, mockOrder } from '../../tests/test-utils';
-import { Dashboard } from './Dashboard';
+import { render, mockDashboardStats, mockOrder } from '../test-utils';
+import { Dashboard } from '../../src/pages/Dashboard';
 
 // Mock the API queries
 vi.mock('../api/queries', () => ({
@@ -10,7 +10,7 @@ vi.mock('../api/queries', () => ({
   useOrders: vi.fn(),
 }));
 
-import { useDashboardStats, useOrders } from '../api/queries';
+import { useDashboardStats, useOrders } from '../../src/api/queries';
 
 describe('Dashboard', () => {
   const mockRefetch = vi.fn();

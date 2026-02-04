@@ -1,5 +1,3 @@
-
-
 interface ImportMetaEnv {
   readonly AUTH_SERVICE_BASE: string;
 }

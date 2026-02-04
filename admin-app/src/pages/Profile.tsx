@@ -127,25 +127,38 @@ export const Profile: React.FC = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             {/* Name */}
             <div className="flex items-center gap-3 p-3 sm:p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-              <FontAwesomeIcon icon={faUser} className="text-gray-500 dark:text-gray-400 flex-shrink-0" />
+              <FontAwesomeIcon
+                icon={faUser}
+                className="text-gray-500 dark:text-gray-400 flex-shrink-0"
+              />
               <div className="min-w-0">
                 <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Name</p>
-                <p className="font-medium text-sm sm:text-base text-gray-900 dark:text-white truncate">{user.name}</p>
+                <p className="font-medium text-sm sm:text-base text-gray-900 dark:text-white truncate">
+                  {user.name}
+                </p>
               </div>
             </div>
 
             {/* Email */}
             <div className="flex items-center gap-3 p-3 sm:p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-              <FontAwesomeIcon icon={faEnvelope} className="text-gray-500 dark:text-gray-400 flex-shrink-0" />
+              <FontAwesomeIcon
+                icon={faEnvelope}
+                className="text-gray-500 dark:text-gray-400 flex-shrink-0"
+              />
               <div className="min-w-0">
                 <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Email</p>
-                <p className="font-medium text-sm sm:text-base text-gray-900 dark:text-white truncate">{user.email}</p>
+                <p className="font-medium text-sm sm:text-base text-gray-900 dark:text-white truncate">
+                  {user.email}
+                </p>
               </div>
             </div>
 
             {/* Role */}
             <div className="flex items-center gap-3 p-3 sm:p-4 bg-gray-50 dark:bg-gray-700/50 rounded-lg">
-              <FontAwesomeIcon icon={faShieldAlt} className="text-gray-500 dark:text-gray-400 flex-shrink-0" />
+              <FontAwesomeIcon
+                icon={faShieldAlt}
+                className="text-gray-500 dark:text-gray-400 flex-shrink-0"
+              />
               <div>
                 <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Role</p>
                 <Badge variant="primary" className="mt-1">

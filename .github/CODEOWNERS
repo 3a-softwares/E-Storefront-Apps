@@ -1,0 +1,35 @@
+# Code Owners for E-Storefront Apps
+# Each line below will require review from the specified owners when code is changed
+
+# Global owners
+* @maintainers
+
+# Admin App
+admin-app/ @admin-team
+
+# Seller App
+seller-app/ @seller-team
+
+# Shell App
+shell-app/ @devops-team
+
+# CI/CD Pipeline
+.github/workflows/ @devops-team
+sonar-project.properties @devops-team
+
+# Configuration files
+.eslintrc.json @tech-lead
+.prettierrc @tech-lead
+Makefile @devops-team
+setup.sh @devops-team
+setup.bat @devops-team
+
+# Documentation
+*.md @technical-writers
+CI-CD-SETUP.md @devops-team
+.github/WORKFLOW-DOCUMENTATION.md @devops-team
+
+# Root configuration
+package.json @tech-lead
+tsconfig.json @tech-lead
+vercel.json @devops-team

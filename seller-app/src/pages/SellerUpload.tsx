@@ -57,8 +57,12 @@ export const SellerUpload: React.FC = () => {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
       <div className="mb-6 sm:mb-8">
-        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">Add New Product</h1>
-        <p className="text-sm sm:text-base text-gray-600">Create and manage your product listings</p>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">
+          Add New Product
+        </h1>
+        <p className="text-sm sm:text-base text-gray-600">
+          Create and manage your product listings
+        </p>
       </div>
 
       {error && (
@@ -67,7 +71,10 @@ export const SellerUpload: React.FC = () => {
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white rounded-lg shadow p-4 sm:p-6 lg:p-8 space-y-4 sm:space-y-6"
+      >
         <div>
           <Input
             label="Product Name"
