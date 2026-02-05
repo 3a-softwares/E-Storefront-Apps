@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useUsers, useDeleteUser, useUpdateUserRole } from '../api/queries';
 import {
   Button,
@@ -39,8 +39,14 @@ export const Users: React.FC = () => {
     setPage(1);
   };
 
-  // Use server-side filtering with search and role
-  const debouncedSearch = searchTerm;
+  // Debounced search value to avoid calling server on every keystroke
+  const [debouncedSearch, setDebouncedSearch] = useState(searchTerm);
+  useEffect(() => {
+    const handler = setTimeout(() => setDebouncedSearch(searchTerm), 400);
+    return () => clearTimeout(handler);
+  }, [searchTerm]);
+
+  // Use server-side filtering with debounced search and role
   const { data, isLoading, refetch } = useUsers(
     page,
     10,
@@ -114,6 +120,7 @@ export const Users: React.FC = () => {
             { value: 'customer', label: 'Customer' },
             { value: 'seller', label: 'Seller' },
             { value: 'admin', label: 'Admin' },
+            { value: 'support', label: 'Support' },
           ]}
         />
       ),
@@ -242,6 +249,7 @@ export const Users: React.FC = () => {
             { value: 'all', label: 'All Roles' },
             { value: 'admin', label: 'Admin' },
             { value: 'seller', label: 'Seller' },
+            { value: 'support', label: 'Support' },
             { value: 'customer', label: 'Customer' },
           ]}
           className="w-full sm:w-48"

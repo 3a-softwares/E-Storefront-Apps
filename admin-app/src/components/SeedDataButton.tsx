@@ -7,7 +7,7 @@ import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-const GATEWAY_URL = import.meta.env.VITE_GATEWAY_URL || 'http://localhost:3000/api';
+const GATEWAY_URL = process.env.VITE_GATEWAY_URL || 'http://localhost:3000/api';
 
 export const SeedDataButton = () => {
   const [loading, setLoading] = useState(false);

@@ -113,11 +113,10 @@ export const Profile: React.FC = () => {
           {/* Message */}
           {message && (
             <div
-              className={`p-3 sm:p-4 rounded-lg text-sm sm:text-base ${
-                message.type === 'success'
-                  ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800'
-                  : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800'
-              }`}
+              className={`p-3 sm:p-4 rounded-lg text-sm sm:text-base ${message.type === 'success'
+                ? 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border border-green-200 dark:border-green-800'
+                : 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border border-red-200 dark:border-red-800'
+                }`}
             >
               {message.text}
             </div>
@@ -190,14 +189,16 @@ export const Profile: React.FC = () => {
                   icon={faExclamationTriangle}
                   className="text-yellow-500 text-xl mt-1"
                 />
-                <div className="flex-1">
-                  <h3 className="font-semibold text-yellow-800 dark:text-yellow-200">
-                    Email Not Verified
-                  </h3>
-                  <p className="text-yellow-700 dark:text-yellow-300 text-sm mt-1">
-                    Please verify your email address to access all features. Click the button below
-                    to send a verification email or verify directly.
-                  </p>
+                <div className="flex justify-between flex-1">
+                  <div className='flex flex-col'>
+                    <h3 className="font-semibold text-yellow-800 dark:text-yellow-200">
+                      Email Not Verified
+                    </h3>
+                    <p className="text-yellow-700 dark:text-yellow-300 text-sm mt-1">
+                      Please verify your email address to access all features. Click the button below
+                      to send a verification email or verify directly.
+                    </p>
+                  </div>
                   <div className="flex gap-3 mt-4">
                     <Button
                       onClick={handleSendVerificationEmail}

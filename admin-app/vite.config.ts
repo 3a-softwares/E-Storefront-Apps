@@ -33,6 +33,9 @@ export default defineConfig(({ mode }) => {
       'process.env.VITE_GRAPHQL_URL': JSON.stringify(
         env.VITE_GRAPHQL_URL || SERVICE_URLS.GRAPHQL_GATEWAY
       ),
+      'process.env.VITE_GRAPHQL_API': JSON.stringify(
+        env.VITE_GRAPHQL_API || SERVICE_URLS.GRAPHQL_GATEWAY
+      ),
       'process.env.VITE_AUTH_SERVICE': JSON.stringify(
         env.VITE_AUTH_SERVICE || SERVICE_URLS.AUTH_SERVICE
       ),

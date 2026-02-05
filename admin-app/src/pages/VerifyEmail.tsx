@@ -145,7 +145,7 @@ export const VerifyEmail: React.FC = () => {
               </div>
 
               <div className="space-y-3">
-                <Button variant="primary" className="w-full" onClick={() => navigate('/dashboard')}>
+                <Button variant="primary" className="w-full" onClick={() => navigate('/')}>
                   <FontAwesomeIcon icon={faHome} className="mr-2" />
                   Go to Dashboard
                 </Button>

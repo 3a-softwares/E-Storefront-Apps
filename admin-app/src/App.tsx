@@ -24,6 +24,7 @@ import {
 import { getUserById } from './api/client';
 import { useAppDispatch } from './store/store';
 import { useTokenValidator } from './store/useTokenValidator';
+import { ServicesHealth } from './components/ServicesHealth';
 
 console.log('VITE_ENV:', process.env.VITE_ENV);
 
@@ -148,6 +149,7 @@ const AppContent: React.FC = () => {
             <Route path="/orders" element={<Orders />} />
             <Route path="/coupons" element={<Coupons />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/services" element={<ServicesHealth />} />
           </Routes>
         </main>
       </div>

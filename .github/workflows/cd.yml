@@ -1,4 +1,4 @@
-name: Apps CD - Deploy to Vercel
+name: Deploy to Vercel
 
 permissions:
   contents: read
@@ -8,7 +8,7 @@ permissions:
 on:
   workflow_run:
     workflows:
-      - Apps CI Pipeline
+      - CI Pipeline
     types:
       - completed
 

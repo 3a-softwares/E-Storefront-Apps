@@ -16,6 +16,7 @@ import {
   faChevronRight,
   faTimes,
   faHeadset,
+  faServer,
 } from '@fortawesome/free-solid-svg-icons';
 import { Button } from '@3asoftwares/ui';
 import { SUPPORT_APP_URL } from '@3asoftwares/utils/client';
@@ -35,6 +36,7 @@ const staticNavItems: NavItem[] = [
   { path: '/products', icon: faBox, label: 'Products' },
   { path: '/orders', icon: faShoppingCart, label: 'Orders' },
   { path: '/coupons', icon: faTicket, label: 'Coupons' },
+  { path: '/services', icon: faServer, label: 'Services' }, 
   { path: '/profile', icon: faUserCircle, label: 'Profile' },
 ];
 
@@ -126,9 +128,8 @@ export const Sidebar: React.FC = () => {
         aria-hidden="true"
       />
       <aside
-        id={'env-' + process.env.REACT_APP_SUPPORT_APP_URL}
         className={`
-          fixed top-0 lg:top-[72px] left-0 z-40 h-screen lg:h-[calc(100vh-72px)] bg-white dark:bg-gray-900 
+          fixed top-0 lg:top-[64px] left-0 z-40 h-screen lg:h-[calc(100vh-64px)] bg-white dark:bg-gray-900 
           border-r border-gray-200 dark:border-gray-800 
           transition-all duration-300 ease-in-out
           ${sidebarOpen ? 'w-64' : 'w-0 lg:w-20'}
@@ -137,7 +138,6 @@ export const Sidebar: React.FC = () => {
         `}
       >
         <div className="flex flex-col h-full">
-          {/* Sidebar Header */}
           <div
             className={`p-4 border-b border-gray-100 dark:border-gray-800 ${
               sidebarOpen ? 'block' : 'hidden lg:block'
