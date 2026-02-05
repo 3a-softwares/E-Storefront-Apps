@@ -36,7 +36,7 @@ const staticNavItems: NavItem[] = [
   { path: '/products', icon: faBox, label: 'Products' },
   { path: '/orders', icon: faShoppingCart, label: 'Orders' },
   { path: '/coupons', icon: faTicket, label: 'Coupons' },
-  { path: '/services', icon: faServer, label: 'Services' }, 
+  { path: '/services', icon: faServer, label: 'Services' },
   { path: '/profile', icon: faUserCircle, label: 'Profile' },
 ];
 

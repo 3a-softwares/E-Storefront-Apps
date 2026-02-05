@@ -47,7 +47,7 @@ describe('Sidebar Component', () => {
       render(<Sidebar />);
 
       const links = screen.getAllByRole('link');
-      expect(links.length).toBe(7);
+      expect(links.length).toBe(8);
     });
 
     it('should call toggleSidebar when toggle button clicked', async () => {
@@ -79,7 +79,7 @@ describe('Sidebar Component', () => {
       render(<Sidebar />);
 
       const links = screen.getAllByRole('link');
-      expect(links.length).toBe(7);
+      expect(links.length).toBe(8);
     });
   });
 });

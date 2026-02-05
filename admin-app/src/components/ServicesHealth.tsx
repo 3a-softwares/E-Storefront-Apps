@@ -17,7 +17,9 @@ const GATEWAY_URL = process.env.VITE_GRAPHQL_API || SERVICE_URLS.GRAPHQL_GATEWAY
 
 export const ServicesHealth = () => {
   const [seedLoading, setSeedLoading] = useState(false);
-  const [seedStatus, setSeedStatus] = useState<{ success?: boolean; message?: string } | null>(null);
+  const [seedStatus, setSeedStatus] = useState<{ success?: boolean; message?: string } | null>(
+    null
+  );
   const user = useAppSelector((state) => state.auth.user);
 
   const { data, isLoading, refetch } = useQuery({
@@ -62,7 +64,11 @@ export const ServicesHealth = () => {
   };
 
   const handleClearData = async () => {
-    if (!window.confirm('Are you sure you want to clear all seeded data? This action cannot be undone.')) {
+    if (
+      !window.confirm(
+        'Are you sure you want to clear all seeded data? This action cannot be undone.'
+      )
+    ) {
       return;
     }
     setSeedLoading(true);
@@ -128,8 +134,13 @@ export const ServicesHealth = () => {
         key: 'status',
         cell: (row: any) => (
           <span
-            className={`px-2 py-1 rounded-full text-xs font-semibold ${row.status === 'healthy' ? 'bg-gray-100 text-gray-800' : row.status === 'unhealthy' ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800'
-              }`}
+            className={`px-2 py-1 rounded-full text-xs font-semibold ${
+              row.status === 'healthy'
+                ? 'bg-gray-100 text-gray-800'
+                : row.status === 'unhealthy'
+                  ? 'bg-red-100 text-red-800'
+                  : 'bg-yellow-100 text-yellow-800'
+            }`}
           >
             {row.status}
           </span>
@@ -153,7 +164,12 @@ export const ServicesHealth = () => {
         cell: (row: any) => (
           <div className="flex gap-2">
             {row.url && (
-              <a href={`${row.url}/health`} target="_blank" rel="noreferrer" className="text-sm text-blue-600 hover:underline">
+              <a
+                href={`${row.url}/health`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-sm text-blue-600 hover:underline"
+              >
                 Check
               </a>
             )}
@@ -169,8 +185,8 @@ export const ServicesHealth = () => {
       <div className="flex justify-between items-center mb-6">
         <h3 className="text-lg font-semibold">Services Health Status</h3>
         <Button
-          className='!w-auto'
-          variant='outline'
+          className="!w-auto"
+          variant="outline"
           onClick={() => refetch()}
           disabled={isLoading}
         >
@@ -195,13 +211,21 @@ export const ServicesHealth = () => {
       <div className="mb-6">
         <div className="flex items-center justify-between mb-3 gap-3">
           <div className="flex items-start gap-2">
-            <Input className="max-w-sm"
-              value={filter} placeholder='Search service...' onChange={(e) => setFilter(e.target.value)} />
-            {filter !== '' && <Button variant='outline' onClick={() => setFilter('')} className="!w-auto">
-              <FontAwesomeIcon icon={faXmark} />
-            </Button>}
+            <Input
+              className="max-w-sm"
+              value={filter}
+              placeholder="Search service..."
+              onChange={(e) => setFilter(e.target.value)}
+            />
+            {filter !== '' && (
+              <Button variant="outline" onClick={() => setFilter('')} className="!w-auto">
+                <FontAwesomeIcon icon={faXmark} />
+              </Button>
+            )}
           </div>
-          <div className="text-sm text-gray-500">Showing {filteredServices.length} of {data?.totalServices || 0}</div>
+          <div className="text-sm text-gray-500">
+            Showing {filteredServices.length} of {data?.totalServices || 0}
+          </div>
         </div>
 
         <Table
@@ -222,11 +246,13 @@ export const ServicesHealth = () => {
           <div className="mb-3 p-2 bg-white rounded text-sm">
             <p className="font-semibold mb-1">Current Database Status:</p>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
-              {Object.entries(seedStatusData.stats || {}).map(([collection, count]: [string, any]) => (
-                <div key={collection} className="text-sm capitalize">
-                  <span className="font-bold">{count}</span> {collection}
-                </div>
-              ))}
+              {Object.entries(seedStatusData.stats || {}).map(
+                ([collection, count]: [string, any]) => (
+                  <div key={collection} className="text-sm capitalize">
+                    <span className="font-bold">{count}</span> {collection}
+                  </div>
+                )
+              )}
             </div>
             {seedStatusData.isEmpty && (
               <p className="text-red-600 text-xs mt-2">Database is empty</p>
@@ -236,22 +262,29 @@ export const ServicesHealth = () => {
 
         {seedStatus && (
           <div
-            className={`mb-3 p-2 rounded text-sm ${seedStatus.success
-              ? 'bg-green-100 text-green-800'
-              : 'bg-red-100 text-red-800'
-              }`}
+            className={`mb-3 p-2 rounded text-sm ${
+              seedStatus.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+            }`}
           >
             {seedStatus.message}
           </div>
         )}
 
         <div className="flex gap-2 justify-end">
-          <Button variant="outline" className='!w-auto'
-            disabled={seedLoading} onClick={handleClearData}>
+          <Button
+            variant="outline"
+            className="!w-auto"
+            disabled={seedLoading}
+            onClick={handleClearData}
+          >
             {seedLoading ? 'Clearing...' : 'Clear Data'}
           </Button>
-          <Button variant="primary" className='!w-auto'
-            disabled={seedLoading} onClick={handleSeedData}>
+          <Button
+            variant="primary"
+            className="!w-auto"
+            disabled={seedLoading}
+            onClick={handleSeedData}
+          >
             {seedLoading ? 'Seeding...' : 'Seed Data'}
           </Button>
         </div>
