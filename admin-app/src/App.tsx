@@ -26,7 +26,7 @@ import { useAppDispatch } from './store/store';
 import { useTokenValidator } from './store/useTokenValidator';
 import { ServicesHealth } from './components/ServicesHealth';
 
-console.log('VITE_ENV:1', process.env.VITE_ENV);
+console.log('VITE_ENV', process.env.VITE_ENV);
 
 const AppContent: React.FC = () => {
   const dispatch = useAppDispatch();
