@@ -15,7 +15,7 @@ import { SellerEarnings } from './pages/SellerEarnings';
 import { SellerProfile } from './pages/SellerProfile';
 import { VerifyEmail } from './pages/VerifyEmail';
 
-console.log('VITE_ENV1:', process.env.VITE_ENV);
+console.log('VITE_ENV:', process.env.VITE_ENV);
 
 function App() {
   const location = useLocation();
