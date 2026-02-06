@@ -3,7 +3,7 @@
     "deploymentEnabled": false
   },
   "installCommand": "yarn install",
-  "buildCommand": "yarn build:seller",
+  "buildCommand": "yarn build",
   "outputDirectory": "dist",
   "framework": "vite",
   "devCommand": "yarn dev",
