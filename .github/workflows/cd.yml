@@ -11,6 +11,8 @@ on:
       - CI Pipeline
     types:
       - completed
+    branches:
+      - main
 
 env:
   NODE_VERSION: 18
