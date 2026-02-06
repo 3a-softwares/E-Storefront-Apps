@@ -1,6 +1,6 @@
 {
   "name": "3asoftwares",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "Frontend applications monorepo - Admin, Seller, Shell apps",
   "workspaces": [
